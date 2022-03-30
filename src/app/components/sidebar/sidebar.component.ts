@@ -94,7 +94,7 @@ export class SidebarComponent implements OnInit {
     },
     {
       "linkText": "Logout",
-      "parentLink": "/",
+      "parentLink": "/login",
       "menu": false,
       "submenu": [],
       "icon": "assets/images/icon/switch.png"
