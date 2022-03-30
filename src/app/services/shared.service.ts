@@ -5,8 +5,5 @@ import { BehaviorSubject } from 'rxjs';
     providedIn: 'root'
 })
 export class SharedService {
-
-    // public sidebar: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     sidebar: boolean = false;
-
 }

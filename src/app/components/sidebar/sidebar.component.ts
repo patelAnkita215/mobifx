@@ -103,9 +103,14 @@ export class SidebarComponent implements OnInit {
 
   // data: any = data;
   result: any = [];
+  firstName: any;
+  lastName: any;
 
   constructor() {
     // console.log("data", this.navitems);
+
+    this.firstName = localStorage.getItem('firstname');
+    this.lastName = localStorage.getItem('lastname');
 
     for (let key in this.navitems) {
       if (this.navitems.hasOwnProperty(key)) {

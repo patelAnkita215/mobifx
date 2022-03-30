@@ -1,91 +1,73 @@
 <div class="dark-blue-bg">
-    
-    <div class="right-border"></div>
-  </div>
-  <div class="sidebar" id="sidebar">
-    <div class="userInfo">
-      <div class="avatar">
-        <div>
-          <img
-            _ngcontent-ote-c20=""
-            src="../../../assets/images/icon/user-icon.png"
-            class="icon"
-          />
-        </div>
-        <div class="user-name">User Name</div>
-      </div>
+
+  <div class="right-border"></div>
+</div>
+<div class="sidebar" id="sidebar">
+  <div class="userInfo">
+    <div class="avatar">
       <div>
-        <img
-          _ngcontent-ote-c20=""
-          src="../../../assets/images/icon/notification-bell.png"
-          class="notiIcon"
-        />
+        <img _ngcontent-ote-c20="" src="../../../assets/images/icon/user-icon.png" class="icon" />
+      </div>
+      <div class="user-name">{{firstName}} {{lastName}}</div>
+    </div>
+    <div>
+      <img _ngcontent-ote-c20="" src="../../../assets/images/icon/notification-bell.png" class="notiIcon" />
+    </div>
+  </div>
+  <div class="widget">
+    <div class="row">
+      <div class="col-md-12 status-silver">
+        <div class="row silver-div">
+          <div>
+            <span class="status-text">Status</span> <br />
+            <span class="silver-text">Silver</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 status-silver">
+        <div class="row">
+          <div>
+            <!-- <mat-slider></mat-slider> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 status-silver">
+        <div class="row">
+          <div class="col-md-6 overall-balance">
+            <span>Overall balance</span><br />
+            <span style="font-weight: bold">$6.54</span>
+          </div>
+          <div class="col-md-6 overall-balance">
+            <span>Status will lower</span><br />
+            <span>in 20 days</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="widget">
-      <div class="row">
-        <div class="col-md-12 status-silver">
-          <div class="row silver-div">
-            <div>
-              <span class="status-text">Status</span> <br />
-              <span class="silver-text">Silver</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12 status-silver">
-          <div class="row">
-            <div>
-              <!-- <mat-slider></mat-slider> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12 status-silver">
-          <div class="row">
-            <div class="col-md-6 overall-balance">
-              <span>Overall balance</span><br />
-              <span style="font-weight: bold">$6.54</span>
-            </div>
-            <div class="col-md-6 overall-balance">
-              <span>Status will lower</span><br />
-              <span>in 20 days</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- <div class="status-widget">
+    <!-- <div class="status-widget">
                   <h2 class="program-status">Status Program</h2>
                   <img _ngcontent-ote-c20="" src="../../../assets/images/icon/widget.jpg" class="widget-icon">
               </div>
               <div class="message">Personal Manager</div> -->
-      <div class="deposite-btn">
-        <button class="participate-btn">Deposit</button>
+    <div class="deposite-btn">
+      <button class="participate-btn">Deposit</button>
+    </div>
+  </div>
+  <div class="drower">
+    <div class="group drower-item" *ngFor="let item of result; let i = index">
+      <!-- <div class="drower-item"> -->
+      <img [src]="item.icon">
+      <a *ngIf="item.submenu.length" (click)="ddToggle(i)" class="light-blue-bg link-arrow">{{ item.linkText }}</a>
+      <!-- <div class="drower-item"> -->
+      <a *ngIf="!item.submenu.length" (click)="ddToggle(i)" routerLink="{{ item.parentLink }}" class="light-blue-bg">{{
+        item.linkText }}</a>
+      <div class="sub-menu" [ngClass]="{ 'show-menu': item.menu }">
+        <ul *ngFor="let menu of result[i].submenu">
+          <li>
+            <a href="{{ menu.link }}">{{ menu.childtext }}</a>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="drower">
-    <div class="group drower-item" *ngFor="let item of result; let i = index">
-        <!-- <div class="drower-item"> -->
-        <img [src]="item.icon">
-        <a
-          *ngIf="item.submenu.length"
-          (click)="ddToggle(i)"
-          class="light-blue-bg link-arrow"
-          >{{ item.linkText }}</a
-        >
-        <!-- <div class="drower-item"> -->
-        <a
-          *ngIf="!item.submenu.length"
-          (click)="ddToggle(i)"
-          routerLink="{{ item.parentLink }}"
-          class="light-blue-bg"
-          >{{ item.linkText }}</a
-        >
-        <div class="sub-menu" [ngClass]="{ 'show-menu': item.menu }">
-          <ul *ngFor="let menu of result[i].submenu">
-            <li>
-              <a href="{{ menu.link }}">{{ menu.childtext }}</a>
-            </li>
-          </ul>
-        </div>
-      </div></div>
   </div>
-  
+</div>
