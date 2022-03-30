@@ -22,10 +22,10 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.clear();
   }
 
   login() {
-    this.router.navigate(['/dashboard'])
     if (this.loginForm?.invalid) {
       this.isValidForm = true;
       return;
@@ -35,15 +35,20 @@ export class LoginComponent implements OnInit {
         password: this.loginForm.controls.password.value,
       };
 
-      this._authService.login(JSON.stringify(user)).subscribe(data => {
-        if (data.status == true) {
+      this._authService.login(JSON.stringify(user)).subscribe(res => {
+        if (res.status === true) {
           this.loginForm = null;
           this.isValidForm = false;
-          // this.toastr.showSuccess(data.message);
+
+          localStorage.setItem('token', res.data?.accessToken);
+          localStorage.setItem('firstname', res.data?.user_info?.firstname);
+          localStorage.setItem('lastname', res.data?.user_info?.lastname);
+          localStorage.setItem('email', res.data?.user_info?.email);
+          // this.toastr.showSuccess(res.message);
           this.router.navigate(['/dashboard']);
         }
         else {
-          // this.toastr.showError(data.errors.error);
+          // this.toastr.showError(res.errors.error);
         }
       });
     }
