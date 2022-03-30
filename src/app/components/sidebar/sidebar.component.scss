@@ -1,0 +1,184 @@
+#sidebar {
+    height: 100%;
+    box-sizing: border-box;
+    // position: relative;
+  
+    .group {
+      overflow: hidden;
+      > a {
+        color: #000;
+        padding: 10px 20px;
+        // display: block;
+        cursor: pointer;
+      }
+    }
+
+    .link-arrow{
+        position: relative;
+    
+    &::after {
+        content: "";
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 55%;
+        right: -50px;
+        transform: translateY(-50%);
+        z-index: 0;
+        background-image: url('../../../assets/images/icon/down.svg');
+    }
+}
+  
+    .sub-menu {
+      transition: max-height 0.5s;
+      max-height: 0;
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style-type: none;
+        background-color: transparent;
+        line-height: 19px;
+        letter-spacing: 0.1pt;
+        a {
+            color: #000;
+            padding: 10px 20px;
+            text-decoration: none;
+          cursor: pointer;
+          display: block;
+        }
+        &:hover {
+          color: #c99c3b;
+        }
+      }
+    }
+  }
+  
+  .show-menu {
+    max-height: 1000px !important;
+  }
+  
+  .right-border {
+    background-color: #03658c;
+    position: absolute;
+    width: 1px;
+    height: calc(100% - 50px);
+    right: 0;
+    top: 50px;
+  }
+  .sidebar {
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 275px;
+	height: 100%;
+	background: #fff;
+	box-shadow: inset 0 -1px 0 #f6f7f8;
+	z-index: 100;
+	transition: all 0.3s;
+}
+.userInfo {
+	margin: 10px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.status-icon {
+	max-width: 20px;
+	max-height: 20px;
+}
+.icon {
+	max-width: 50px;
+	max-height: 50px;
+}
+.avatar {
+	display: flex;
+	align-items: center;
+}
+.user-name {
+	color: #000;
+	letter-spacing: 0.175px;
+	font-size: 14px;
+	line-height: 16px;
+	max-width: 140px;
+	margin-left: 20px;
+}
+.notiIcon {
+	max-width: 22px;
+	max-height: 22px;
+}
+.widget {
+	width: 100%;
+}
+.silver-text {
+	font-size: 30px;
+	line-height: 25px;
+}
+.status-text{
+	font-size: 15px;
+}
+.silver-div {
+	margin: 20px 0 20px 40px;
+}
+.status-silver {
+	margin: 10px;
+}
+.overall-balance {
+	font-size: 13px;
+}
+.deposite-btn {
+	text-align: center;
+}
+.program-status {
+	font-size: 10px;
+	margin-bottom: 16px;
+	font-size: 16px;
+	font-weight: 400;
+	text-align: center;
+	color: #000;
+}
+.status-widget {
+	margin-bottom: 20px;
+}
+.widget-icon {
+	max-width: 300px;
+	height: auto;
+	// height: 175px;
+}
+.message {
+	font-size: 12px;
+}
+.participate-btn {
+	color: white;
+	width: 200px;
+	height: 35px;
+	margin-top: 15px;
+	background: #c99c3b;
+	border-color: #c99c3b;
+	border-radius: 5px;
+}
+.drower {
+	margin-top: 50px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+.drower-item {
+	// height: 65px;
+	width: 100%;
+	padding: 10px 20px;
+	border-top: 1px solid #f6f7f8;
+	cursor: pointer;
+}
+.drower-item img {
+	max-width: 25px;
+	max-height: 25px;
+}
+.drower-item a {
+	padding-left: 10px;
+}
+  
