@@ -527,6 +527,7 @@ h1,h2,h3,h4,h5,h6 {
     box-shadow: none;
     -webkit-transition: border-bottom-color .3s;
     transition: border-bottom-color .3s;
+    z-index: 3;
 }
 .login .form-group ::placeholder {font-size: 13px;color: #9299a2;}
 .login .form-group label {
@@ -546,7 +547,7 @@ h1,h2,h3,h4,h5,h6 {
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
 }
-.form-group .form-control + label,.form-group .form-control:focus + label {
+.form-group .form-control:focus + label {
   top: -20px;
     font-size: 9px;
     z-index: 200;

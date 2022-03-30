@@ -16,22 +16,24 @@
 				<div class="col-xl-10 col-md-12 col-lg-10">
 					<div class="right-side">
 						<h2>Log in to your Personal Area</h2>
-						<p>Please enter your email and password to log in. In your Personal Area, you can manage your
+						<p class="mb-4">Please enter your email and password to log in. In your Personal Area, you can manage your
 							trading accounts and other settings.
 						</p>
 						<div class="login-form">
 							<form [formGroup]="loginForm">
-								<div class="form-group">
+								<div class="form-group mt-3">
 									<!-- <label for="Emailid" class="orange-txt">Email</label> -->
 									<input type="email" formControlName="email" class="form-control input-field"
-										id="Emailid" placeholder="Email" />
+										id="Emailid" />
+										<label for="Emailid" class="orange-txt">Email</label>
 									<div *ngIf="(isValidForm || loginForm.controls['email'].touched) && loginForm.controls['email'].errors"
 										class="error-msg">Email is mandatory field</div>
 								</div>
-								<div class="form-group">
+								<div class="form-group mt-3">
 									<!-- <label for="Password">Password</label> -->
 									<input type="password" formControlName="password" class="form-control input-field"
-										id="Password" placeholder="Password" />
+										id="Password" />
+										<label for="Password">Password</label>
 									<div class="input-icon">
 										<div class="eye-icon"></div>
 									</div>

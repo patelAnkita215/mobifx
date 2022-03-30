@@ -21,38 +21,37 @@
                             <form [formGroup]="regForm">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>First Name</mat-label>
-                                            <input type="text" matInput formControlName="fname">
-                                        </mat-form-field>
-                                        <div *ngIf="(isValidForm || regForm.controls['fname'].touched) && regForm.controls['fname'].errors"
-                                            class="error-msg">First Name is mandatory field</div>
+                                        <div class="form-group">
+                                            <!-- <label for="Emailid" class="orange-txt">Email</label> -->
+                                            <input type="text" class="form-control input-field"
+                                                id="fname" formControlName="fname"/>
+                                                <label for="fname" class="orange-txt">First Name</label>
+                                                <div *ngIf="(isValidForm || regForm.controls['fname'].touched) && regForm.controls['fname'].errors"
+                                                class="error-msg">First Name is mandatory field</div>
+                                        </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <mat-form-field class="example-full-width" appearance="fill">
-                                            <mat-label>Last Name</mat-label>
-                                            <input type="text" matInput formControlName="lname">
-                                        </mat-form-field>
-                                        <div *ngIf="(isValidForm || regForm.controls['lname'].touched) && regForm.controls['lname'].errors"
+                                        <div class="form-group">
+                                            <input type="text" class="form-control input-field"
+                                                id="lname" formControlName="lname"/>
+                                                <label for="lname" class="orange-txt">Last Name</label>
+                                                <div *ngIf="(isValidForm || regForm.controls['lname'].touched) && regForm.controls['lname'].errors"
                                             class="error-msg">Last Name is mandatory field</div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Email</mat-label>
-                                        <input type="email" matInput formControlName="email">
-                                    </mat-form-field>
+                                        <input type="email" id="emailid" class="form-control input-field" formControlName="email">
+                                        <label for="emailid" class="orange-txt">Email</label>
                                     <div *ngIf="(isValidForm || regForm.controls['email'].touched) && regForm.controls['email'].errors"
                                         class="error-msg">Email is mandatory field</div>
                                 </div>
                                 <div class="form-group">
-                                    <mat-form-field class="example-full-width" appearance="fill">
-                                        <mat-label>Password</mat-label>
-                                        <input type="password" matInput formControlName="password">
+                                        <input type="password" id="psw" class="form-control input-field"  formControlName="password">
+                                        <label for="psw" class="orange-txt">Password</label>
                                         <div class="input-icon">
                                             <div class="eye-icon"></div>
                                         </div>
-                                    </mat-form-field>
                                     <div *ngIf="(isValidForm || regForm.controls['password'].touched) && regForm.controls['password'].errors"
                                         class="error-msg">Password is mandatory field</div>
                                 </div>

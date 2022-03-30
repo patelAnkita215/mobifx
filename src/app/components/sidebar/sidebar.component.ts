@@ -14,22 +14,21 @@ export class SidebarComponent implements OnInit {
       "parentLink": "/dashboard",
       "menu": false,
       "submenu": [],
-      "icon": "assets/images/icon/statics.png"
+      "icon": "assets/images/icon/dashboard.png"
     },
     {
       "linkText": "Withdraw",
       "parentLink": "/withdraw",
       "menu": false,
       "submenu": [],
-      "icon": "assets/images/icon/cash-withdraw-icon-vector-12872784.jpg"
+      "icon": "assets/images/icon/withdrawal.png"
     },
     {
       "linkText": "Intarnal transfer",
       "parentLink": "/internal-transfer",
       "menu": false,
       "submenu": [],
-      "icon": "assets/images/icon/invite-friends-icon-11.jpg"
-
+      "icon": "assets/images/icon/transfer.png"
     },
     {
       "linkText": "Operation history",
@@ -49,7 +48,7 @@ export class SidebarComponent implements OnInit {
           "link": "/transfer-history"
         }
       ],
-      "icon": "assets/images/icon/images.jpg"
+      "icon": "assets/images/icon/dollar-sign.png"
     },
     {
       "linkText": "Trading accounts",
@@ -77,21 +76,28 @@ export class SidebarComponent implements OnInit {
           "link": "/open-demo-account"
         }
       ],
-      "icon": "assets/images/icon/treding.png"
+      "icon": "assets/images/icon/increasing-stocks-graphic.png"
     },
     {
       "linkText": "User Statuses",
       "parentLink": "/user-status",
       "menu": false,
       "submenu": [],
-      "icon": "assets/images/icon/istockphoto-1283621184-170667a.jpg"
+      "icon": "assets/images/icon/king.png"
     },
     {
       "linkText": "Invite a friend",
       "parentLink": "/",
       "menu": false,
       "submenu": [],
-      "icon": "assets/images/icon/istockphoto-1283621184-170667a.jpg"
+      "icon": "assets/images/icon/add-user.png"
+    },
+    {
+      "linkText": "Logout",
+      "parentLink": "/",
+      "menu": false,
+      "submenu": [],
+      "icon": "assets/images/icon/switch.png"
     }
   ];
 
