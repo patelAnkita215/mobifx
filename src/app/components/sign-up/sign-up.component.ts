@@ -12,10 +12,10 @@ import { ApiService } from '../../services/api.service';
 })
 export class SignUpComponent implements OnInit {
   regForm: FormGroup;
-
+  showSpinner: boolean = false;
   isValidForm: boolean = false;
   // private toastr: CommonToasterService
-  constructor(public _formBuilder: FormBuilder,public sharedService: SharedService, public _authService: ApiService, private router: Router) {
+  constructor(public _formBuilder: FormBuilder, public sharedService: SharedService, public _authService: ApiService, private router: Router) {
     this.regForm = this._formBuilder.group({
       fname: ['', Validators.required],
       lname: ['', Validators.required],
@@ -41,17 +41,25 @@ export class SignUpComponent implements OnInit {
         password: this.regForm.controls.password.value,
         login_type: "system"
       };
-      this._authService.signup(user).subscribe(data => {
-        if (data.status == true) {
+      this.showSpinner = true;
+      this._authService.signup(user).subscribe(res => {
+        if (res.status == true) {
+
+          console.log('this.showSpinner', this.showSpinner);
           this.regForm = null;
           this.isValidForm = false;
-          // this.toastr.showSuccess(data.message);
+          this.showSpinner = false;
+          // this.toastr.showSuccess(res.message);
           this.router.navigate(['/login']);
+          // this.toastr.showError(res.errors.error);
         }
         else {
-          // this.toastr.showError(data.errors.error);
+          this.showSpinner = false;
         }
-      });
+      },
+        _error => {
+          this.showSpinner = false;
+        });
     }
   }
 

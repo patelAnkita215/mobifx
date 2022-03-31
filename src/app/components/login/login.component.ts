@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { SharedService } from '../../services/shared.service';
+import { CommonSpinnerService } from '../../services/common-spinner.service';
 
 @Component({
   selector: 'app-login',
@@ -12,8 +13,9 @@ import { SharedService } from '../../services/shared.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isValidForm: boolean = false;
+  showSpinner: boolean = false;
 
-  constructor(public _formBuilder: FormBuilder, public _authService: ApiService, private router: Router, public sharedservice: SharedService) {
+  constructor(public _formBuilder: FormBuilder, public _authService: ApiService, private router: Router, public sharedservice: SharedService, public spinnerService: CommonSpinnerService, private cdRef: ChangeDetectorRef) {
     this.loginForm = this._formBuilder.group({
       email: ['', Validators.required, Validators.email],
       password: ['', Validators.required]
@@ -24,7 +26,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.clear();
+    // this.init();
   }
+
+  // init() {
+  // this.spinnerService.getSpinnerObserver().subscribe((status) => {
+  // this.showSpinner = (status === 'start');
+  // this.cdRef.detectChanges();
+  // });
+  // }
+
 
   login() {
     if (this.loginForm?.invalid) {
@@ -35,12 +46,12 @@ export class LoginComponent implements OnInit {
         email: this.loginForm.controls.email.value,
         password: this.loginForm.controls.password.value,
       };
-
+      this.showSpinner = true;
       this._authService.login(JSON.stringify(user)).subscribe(res => {
-        if (res.status === true) {
+        if (res.status == true) {
           this.loginForm = null;
           this.isValidForm = false;
-
+          this.showSpinner = false;
           localStorage.setItem('token', res.data?.accessToken);
           localStorage.setItem('firstname', res.data?.user_info?.firstname);
           localStorage.setItem('lastname', res.data?.user_info?.lastname);
@@ -49,9 +60,13 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/dashboard']);
         }
         else {
+          this.showSpinner = false;
           // this.toastr.showError(res.errors.error);
         }
-      });
+      },
+        _error => {
+          this.showSpinner = false;
+        });
     }
   }
 }

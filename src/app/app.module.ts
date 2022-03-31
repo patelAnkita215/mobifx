@@ -34,7 +34,9 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './components/interceptors/auth.interceptor';
 import { ApiService } from './services/api.service';
 // import { ToastrModule } from 'ngx-toastr';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CommonSpinnerService } from './services/common-spinner.service';
 
 @NgModule({
   declarations: [
@@ -73,11 +75,13 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSelectModule,
     MatCardModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     ApiService,
     AuthInterceptor,
+    CommonSpinnerService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
