@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
     this.sharedservice.sidebar = false;
+    this.sharedservice.isHeader = true;
   }
 
   ngOnInit(): void {

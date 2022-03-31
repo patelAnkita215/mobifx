@@ -8,8 +8,9 @@ import { SharedService } from 'src/app/services/shared.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(public sharedservice: SharedService) {
-    this.sharedservice.sidebar = true;
+  constructor(public sharedService: SharedService) {
+    this.sharedService.sidebar = true;
+    this.sharedService.isHeader = false;
   }
 
   ngOnInit() {

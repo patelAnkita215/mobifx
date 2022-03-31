@@ -10,6 +10,7 @@ export class UserStatusComponent implements OnInit {
 
   constructor(public sharedService: SharedService) {
     this.sharedService.sidebar = true;
+    this.sharedService.isHeader = false;
   }
 
   ngOnInit(): void {

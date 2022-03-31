@@ -10,6 +10,7 @@ export class OpenDemoAccountComponent implements OnInit {
 
   constructor(public sharedService: SharedService) {
     this.sharedService.sidebar = true;
+    this.sharedService.isHeader = false;
   }
 
   ngOnInit(): void {
