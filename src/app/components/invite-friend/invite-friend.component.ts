@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-invite-friend',
@@ -8,7 +9,7 @@ import { SharedService } from '../../services/shared.service';
 })
 export class InviteFriendComponent implements OnInit {
 
-  constructor(public sharedService: SharedService) {
+  constructor(public sharedService: SharedService, public dialog: MatDialog) {
     this.sharedService.sidebar = true;
   }
 

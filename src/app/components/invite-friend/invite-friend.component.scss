@@ -682,3 +682,129 @@
 		}
 	}
 }
+.invite-friend-info-wrapper .sweet-modal {
+	width: 600px;
+	max-width: 90%;
+	height: auto;
+}
+.invite-friend-info-wrapper .sweet-modal.is-alert .sweet-content {
+	padding: 0;
+}
+.invite-friend-info-wrapper .sweet-box-actions {
+	top: 0;
+	right: 0;
+}
+.invite-friend-info-wrapper .sweet-box-actions .sweet-action-close {
+	width: 50px;
+	height: 50px;
+}
+.invite-friend-info-wrapper .sweet-box-actions svg {
+	width: 20px !important;
+	height: 20px !important;
+}
+.invite-friend-info__content {
+	display: flex;
+}
+.invite-friend-info__img-block {
+	width: 240px;
+	flex-shrink: 0;
+	background: #e7f1ff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+@media (max-width: 700px) {
+	.invite-friend-info__img-block {
+		display: none;
+	}
+}
+.invite-friend-info__inner {
+	padding: 24px;
+	width: 100%;
+	text-align: left;
+}
+.-rtl-mode .invite-friend-info__inner {
+	text-align: right;
+}
+.invite-friend-info__title {
+	font-size: 16px;
+	font-weight: 700;
+	margin-right: 20px;
+	line-height: 22px;
+}
+.-rtl-mode .invite-friend-info__title {
+	margin-right: 0;
+	margin-left: 20px;
+}
+.invite-friend-info__list {
+	margin-top: 24px;
+}
+.invite-friend-info__btn-wrapper {
+	margin-top: 24px;
+	display: flex;
+	justify-content: center;
+}
+.invite-friend-info__btn {
+	width: 100%;
+	justify-content: center;
+}
+.invite-friend-list {
+	margin-bottom: 0;
+}
+.invite-friend-list__item {
+	margin-top: 24px;
+	margin-bottom: 0;
+	display: flex;
+	position: relative;
+}
+.invite-friend-list__item:first-child {
+	margin-top: 0;
+}
+.invite-friend-list__item:last-child:after {
+	content: none;
+}
+.invite-friend-list__item:after {
+	content: "";
+	width: 1px;
+	height: calc(100% - 12px);
+	border-left: 1px dashed #ccc;
+	position: absolute;
+	-webkit-transform: translateY(28px) translateX(10px);
+	transform: translateY(28px) translateX(10px);
+}
+.-rtl-mode .invite-friend-list__item:after {
+	-webkit-transform: translateY(28px) translateX(-10px);
+	transform: translateY(28px) translateX(-10px);
+}
+.invite-friend-list__counter {
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #0d6ffb;
+	color: #fff;
+	font-size: 12px;
+	flex-shrink: 0;
+}
+.invite-friend-list__content {
+	margin-left: 16px;
+}
+.-rtl-mode .invite-friend-list__content {
+	margin-left: 0;
+	margin-right: 16px;
+}
+.invite-friend-list__title {
+	color: #000;
+	line-height: 20px;
+	margin-bottom: 0;
+	font-weight: 500;
+	font-size: 14px;
+}
+.invite-friend-list__text {
+	margin-top: 12px;
+	color: #848b9d;
+	line-height: 20px;
+	font-size: 14px;
+}

@@ -34,6 +34,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './components/interceptors/auth.interceptor';
 import { ApiService } from './services/api.service';
 // import { ToastrModule } from 'ngx-toastr';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ApiService } from './services/api.service';
     MatSelectModule,
     MatCardModule,
     HttpClientModule,
+    MatDialogModule
   ],
   providers: [
     ApiService,
