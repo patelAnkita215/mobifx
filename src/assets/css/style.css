@@ -763,4 +763,11 @@ h1,h2,h3,h4,h5,h6 {
 .signup .right-side .signup-form .form-group ::placeholder {color: #ababab;font-size: 1em;}
 .signup .right-side .signup-form .select-drop::after {content: url(images/icon/drop-icon.png);width: 9px;height: 7px;position: absolute;top: 16px;right: 30px;pointer-events: none;}
 .signup .right-side .signup-form .select-drop .form-control {-webkit-appearance: menulist-button;color: #ababab !important;-webkit-appearance: none;-moz-appearance: none;-ms-appearance: none;-o-appearance: none;appearance: none;font-size: 1rem;}
-/* ==== # Signup ==== */
+
+.mat-slider-min-value:not(.mat-slider-thumb-label-showing) .mat-slider-thumb {
+  border-color: rgba(0, 0, 0, 0.26);
+  background-color: transparent !important;
+}
+.mat-accent .mat-slider-track-fill, .mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label {
+	background-color: #c99c3b !important;
+}

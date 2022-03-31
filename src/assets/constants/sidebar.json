@@ -82,13 +82,6 @@
       "menu": false,
       "submenu": [],
       "icon": "assets/images/icon/add-user.png"
-    },
-    {
-      "linkText": "Logout",
-      "parentLink": "/login",
-      "menu": false,
-      "submenu": [],
-      "icon": "assets/images/icon/switch.png"
     }
   ]
 }
