@@ -771,3 +771,4 @@ h1,h2,h3,h4,h5,h6 {
 .mat-accent .mat-slider-track-fill, .mat-accent .mat-slider-thumb, .mat-accent .mat-slider-thumb-label {
 	background-color: #c99c3b !important;
 }
+.mat-dialog-container {padding: 0 !important;}
