@@ -22,8 +22,8 @@ export const Endpoints = {
             get login() {
                 return `${apiurl}/auth/login`;
             },
-            get verfiyToken() {
-                return `${apiurl}/verification/`;
+            get verifyEmail() {
+                return `${apiurl}/auth/verification/`;
             }
         }
     }

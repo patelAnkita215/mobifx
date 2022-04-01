@@ -27,4 +27,7 @@ export class ApiService {
     login(user: any): Observable<any> {
         return this.apiService.post(Endpoints.apiendpoint.auth.login, user);
     }
+    verifyEmail(token: any): Observable<any> {
+        return this.apiService.get(Endpoints.apiendpoint.auth.verifyEmail + token);
+    }
 }

@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SignUpComponent implements OnInit {
   regForm: FormGroup;
   showSpinner: boolean = false;
-  isValidForm: boolean = false;  
+  isValidForm: boolean = false;
   // private toastr: CommonToasterService
   constructor(
     public _formBuilder: FormBuilder,
@@ -36,7 +36,7 @@ export class SignUpComponent implements OnInit {
     localStorage.clear();
   }
 
-  openAccount() {    
+  openAccount() {
     if (this.regForm?.invalid) {
       this.isValidForm = true;
       return;
@@ -49,7 +49,7 @@ export class SignUpComponent implements OnInit {
         login_type: "system"
       };
 
-      // this.router.navigate(['/email-verification']);
+      this.router.navigate(['/email-verification']);
       // this.showSpinner = true;
       // this._authService.signup(user).subscribe(res => {
       //   if (res.status == true) {
@@ -78,5 +78,4 @@ export class SignUpComponent implements OnInit {
       //   });
     }
   }
-
 }
