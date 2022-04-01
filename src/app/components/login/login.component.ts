@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { SharedService } from '../../services/shared.service';
 import { CommonSpinnerService } from '../../services/common-spinner.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,15 @@ export class LoginComponent implements OnInit {
   isValidForm: boolean = false;
   showSpinner: boolean = false;
 
-  constructor(public _formBuilder: FormBuilder, public _authService: ApiService, private router: Router, public sharedservice: SharedService, public spinnerService: CommonSpinnerService, private cdRef: ChangeDetectorRef) {
+  constructor(
+    public _formBuilder: FormBuilder,
+    public _authService: ApiService,
+    private router: Router,
+    public sharedservice: SharedService,
+    public spinnerService: CommonSpinnerService,
+    private cdRef: ChangeDetectorRef,
+    private _snackBar: MatSnackBar
+  ) {
     this.loginForm = this._formBuilder.group({
       email: ['', Validators.required, Validators.email],
       password: ['', Validators.required]
@@ -36,7 +45,6 @@ export class LoginComponent implements OnInit {
   // });
   // }
 
-
   login() {
     if (this.loginForm?.invalid) {
       this.isValidForm = true;
@@ -46,6 +54,7 @@ export class LoginComponent implements OnInit {
         email: this.loginForm.controls.email.value,
         password: this.loginForm.controls.password.value,
       };
+
       this.showSpinner = true;
       this._authService.login(JSON.stringify(user)).subscribe(res => {
         if (res.status == true) {
@@ -57,15 +66,24 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('lastname', res.data?.user_info?.lastname);
           localStorage.setItem('email', res.data?.user_info?.email);
           // this.toastr.showSuccess(res.message);
+          this._snackBar.open(res.message, 'Undo', {
+            duration: 3000
+          });
           this.router.navigate(['/dashboard']);
         }
         else {
           this.showSpinner = false;
+          this._snackBar.open(res.message, 'Undo', {
+            duration: 3000
+          });
           // this.toastr.showError(res.errors.error);
         }
       },
-        _error => {
+        (_error: any) => {
           this.showSpinner = false;
+          this._snackBar.open(_error?.message, 'Undo', {
+            duration: 3000
+          });
         });
     }
   }

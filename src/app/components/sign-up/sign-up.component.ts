@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SharedService } from 'src/app/services/shared.service';
 // import { CommonToasterService } from '../../services/common-toaster.service';
 import { ApiService } from '../../services/api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-sign-up',
@@ -15,7 +16,13 @@ export class SignUpComponent implements OnInit {
   showSpinner: boolean = false;
   isValidForm: boolean = false;
   // private toastr: CommonToasterService
-  constructor(public _formBuilder: FormBuilder, public sharedService: SharedService, public _authService: ApiService, private router: Router) {
+  constructor(
+    public _formBuilder: FormBuilder,
+    public sharedService: SharedService,
+    public _authService: ApiService,
+    private router: Router,
+    private _snackBar: MatSnackBar
+  ) {
     this.regForm = this._formBuilder.group({
       fname: ['', Validators.required],
       lname: ['', Validators.required],
@@ -44,21 +51,28 @@ export class SignUpComponent implements OnInit {
       this.showSpinner = true;
       this._authService.signup(user).subscribe(res => {
         if (res.status == true) {
-
-          console.log('this.showSpinner', this.showSpinner);
           this.regForm = null;
           this.isValidForm = false;
           this.showSpinner = false;
+          this._snackBar.open(res.message, 'Undo', {
+            duration: 3000
+          });
           // this.toastr.showSuccess(res.message);
           this.router.navigate(['/login']);
           // this.toastr.showError(res.errors.error);
         }
         else {
           this.showSpinner = false;
+          this._snackBar.open(res.message, 'Undo', {
+            duration: 3000
+          });
         }
       },
-        _error => {
+        (_error: any) => {
           this.showSpinner = false;
+          this._snackBar.open(_error?.errors?.error, 'Undo', {
+            duration: 3000
+          });
         });
     }
   }

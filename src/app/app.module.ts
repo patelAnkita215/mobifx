@@ -37,6 +37,7 @@ import { ApiService } from './services/api.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonSpinnerService } from './services/common-spinner.service';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import { CommonSpinnerService } from './services/common-spinner.service';
     HttpClientModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [
     ApiService,
