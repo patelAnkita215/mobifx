@@ -25,6 +25,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
+import { MatStepperModule } from '@angular/material/stepper'
 import { WithdrawComponent } from './components/withdraw/withdraw.component';
 import { InternalTransferComponent } from './components/internal-transfer/internal-transfer.component';
 import { WithdrawHistoryComponent } from './components/withdraw-history/withdraw-history.component';
@@ -38,7 +39,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonSpinnerService } from './services/common-spinner.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { EmailVerifyComponent } from './components/email-verify/email-verify.component'
+import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
+import { VerificationDetailsComponent } from './components/verification-details/verification-details.component'
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { EmailVerifyComponent } from './components/email-verify/email-verify.com
     DepositHistoryComponent,
     TransferHistoryComponent,
     EmailVerifyComponent,
+    VerificationDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +83,8 @@ import { EmailVerifyComponent } from './components/email-verify/email-verify.com
     HttpClientModule,
     MatDialogModule,
     MatProgressSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatStepperModule
   ],
   providers: [
     ApiService,
