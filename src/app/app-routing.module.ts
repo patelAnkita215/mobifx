@@ -18,6 +18,7 @@ import { OpenRealAccountComponent } from './components/open-real-account/open-re
 import { OpenDemoAccountComponent } from './components/open-demo-account/open-demo-account.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component'
+import { VerificationDetailsComponent } from './components/verification-details/verification-details.component'
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'open-real-account', component: OpenRealAccountComponent },
   { path: 'open-demo-account', component: OpenDemoAccountComponent },
   { path: 'email-verification', component: EmailVerifyComponent },
+  { path: 'verification-details', component: VerificationDetailsComponent },
 ];
 
 @NgModule({

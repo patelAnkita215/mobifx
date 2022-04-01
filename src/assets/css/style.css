@@ -796,13 +796,13 @@ h6 {
 
 .btn-login {
   color: #000;
-  border: 1px solid #006add;
+  border: 1px solid #c99c3b;
 }
 
 .btn-login:hover {
   color: #000;
-  background: rgba(0, 106, 221, .15);
-  border: 1px solid #006add;
+  background: rgba(201, 156, 59, .15);
+  border: 1px solid #c99c3b;
 }
 
 .btn-facebook {
