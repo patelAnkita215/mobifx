@@ -38,6 +38,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CommonSpinnerService } from './services/common-spinner.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { EmailVerifyComponent } from './components/email-verify/email-verify.component'
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     WithdrawHistoryComponent,
     DepositHistoryComponent,
     TransferHistoryComponent,
+    EmailVerifyComponent,
   ],
   imports: [
     BrowserModule,

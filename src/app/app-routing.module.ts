@@ -17,7 +17,7 @@ import { MonitoringComponent } from './components/monitoring/monitoring.componen
 import { OpenRealAccountComponent } from './components/open-real-account/open-real-account.component';
 import { OpenDemoAccountComponent } from './components/open-demo-account/open-demo-account.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-
+import { EmailVerifyComponent } from './components/email-verify/email-verify.component'
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'sidebar', component: SidebarComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent ,},
+  { path: 'dashboard', component: DashboardComponent, },
   { path: 'deposit-history', component: DepositHistoryComponent },
   { path: 'transfer-history', component: TransferHistoryComponent },
   { path: 'withdraw-history', component: WithdrawHistoryComponent },
@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'monitoring', component: MonitoringComponent },
   { path: 'open-real-account', component: OpenRealAccountComponent },
   { path: 'open-demo-account', component: OpenDemoAccountComponent },
-
+  { path: 'email-verification', component: EmailVerifyComponent },
 ];
 
 @NgModule({

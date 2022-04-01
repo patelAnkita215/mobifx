@@ -14,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SignUpComponent implements OnInit {
   regForm: FormGroup;
   showSpinner: boolean = false;
-  isValidForm: boolean = false;
+  isValidForm: boolean = false;  
   // private toastr: CommonToasterService
   constructor(
     public _formBuilder: FormBuilder,
@@ -36,7 +36,7 @@ export class SignUpComponent implements OnInit {
     localStorage.clear();
   }
 
-  openAccount() {
+  openAccount() {    
     if (this.regForm?.invalid) {
       this.isValidForm = true;
       return;
@@ -48,32 +48,34 @@ export class SignUpComponent implements OnInit {
         password: this.regForm.controls.password.value,
         login_type: "system"
       };
-      this.showSpinner = true;
-      this._authService.signup(user).subscribe(res => {
-        if (res.status == true) {
-          this.regForm = null;
-          this.isValidForm = false;
-          this.showSpinner = false;
-          this._snackBar.open(res.message, 'Undo', {
-            duration: 3000
-          });
-          // this.toastr.showSuccess(res.message);
-          this.router.navigate(['/login']);
-          // this.toastr.showError(res.errors.error);
-        }
-        else {
-          this.showSpinner = false;
-          this._snackBar.open(res.message, 'Undo', {
-            duration: 3000
-          });
-        }
-      },
-        (_error: any) => {
-          this.showSpinner = false;
-          this._snackBar.open(_error?.errors?.error, 'Undo', {
-            duration: 3000
-          });
-        });
+
+      // this.router.navigate(['/email-verification']);
+      // this.showSpinner = true;
+      // this._authService.signup(user).subscribe(res => {
+      //   if (res.status == true) {
+      //     this.regForm = null;
+      //     this.isValidForm = false;
+      //     this.showSpinner = false;
+      //     this._snackBar.open(res.message, 'Undo', {
+      //       duration: 3000
+      //     });
+      //     // this.toastr.showSuccess(res.message);
+      //     this.router.navigate(['/email-verification']);
+      //     // this.toastr.showError(res.errors.error);
+      //   }
+      //   else {
+      //     this.showSpinner = false;
+      //     this._snackBar.open(res.message, 'Undo', {
+      //       duration: 3000
+      //     });
+      //   }
+      // },
+      //   (_error: any) => {
+      //     this.showSpinner = false;
+      //     this._snackBar.open(_error?.errors?.error, 'Undo', {
+      //       duration: 3000
+      //     });
+      //   });
     }
   }
 
