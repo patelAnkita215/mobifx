@@ -50,32 +50,33 @@ export class SignUpComponent implements OnInit {
       };
       // this.router.navigate(['/email-verification']);
       this.showSpinner = true;
-      this._authService.signup(user).subscribe(res => {
-        if (res.status == true) {
-          this.regForm = null;
-          this.isValidForm = false;
-          this.showSpinner = false;
-          this._snackBar.open(res.message, 'Undo', {
-            duration: 3000
-          });
-          // this.toastr.showSuccess(res.message);
-          this.router.navigate(['/email-verification']);
+      // this._authService.signup(user).subscribe(res => {
+      //   if (res.status == true) {
+      localStorage.setItem('email', this.regForm.controls.email.value);
+      //     this.regForm = null;
+      //     this.isValidForm = false;
+      //     this.showSpinner = false;
+      //     this._snackBar.open(res.message, 'Undo', {
+      //       duration: 3000
+      //     });
+      //     // this.toastr.showSuccess(res.message);
+      this.router.navigate(['/email-verification']);
 
-          // this.toastr.showError(res.errors.error);
-        }
-        else {
-          this.showSpinner = false;
-          this._snackBar.open(res.message, 'Undo', {
-            duration: 3000
-          });
-        }
-      },
-        (_error: any) => {
-          this.showSpinner = false;
-          this._snackBar.open(_error?.errors?.error, 'Undo', {
-            duration: 3000
-          });
-        });
+      //     // this.toastr.showError(res.errors.error);
+      //   }
+      //   else {
+      //     this.showSpinner = false;
+      //     this._snackBar.open(res.message, 'Undo', {
+      //       duration: 3000
+      //     });
+      //   }
+      // },
+      //   (_error: any) => {
+      //     this.showSpinner = false;
+      //     this._snackBar.open(_error?.errors?.error, 'Undo', {
+      //       duration: 3000
+      //     });
+      //   });
     }
   }
 }
