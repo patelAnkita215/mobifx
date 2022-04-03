@@ -2,44 +2,51 @@
   <div class="userInfo">
     <div class="sidebar-user">
       <div class="avatar dropdown">
-        <div class="user-info-avtar" id="user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <div class="user-info-avtar" id="user-dropdown" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
           <div class="avtar-icon"><img src="../../../assets/images/icon/user-icon.png" class="img-fluid" /></div>
           <div class="settings-img">
             <img src="../../../assets/images/icon/settings.png" class="img-fluid" />
           </div>
         </div>
         <div class="dropdown-menu avatar-menu" aria-labelledby="user-dropdown">
-            <ul class="menu-list">
-              <li class="menu-list-item"><a href="#" class="menu-link">My info</a></li>
-              <li class="menu-list-item"><a href="#" class="menu-link">Account verification</a></li>
-              <li class="menu-list-item"><a href="#" class="menu-link">Change passwords</a></li>
-              <li class="menu-list-item"><a href="#" class="menu-link">Restore passwords</a></li>
-              <li class="menu-list-item"><a href="#" class="menu-link">Newsletters</a></li>
-              <li class="menu-list-item"><a href="#" class="menu-link">Bonus settings</a></li>
-              <li class="menu-list-item"><a href="#" class="menu-link">Account log</a></li>
-              <li class="menu-list-item">
-                <div class="menu-link">
-                  <div class="menu-text">Language</div> 
-                  <div class="menu-ico-container">
-                    <div class="menu-flag-ico"><img src="../../../assets/images/countrylogo.png" class="img-fluid"></div>
-                  </div>
+          <ul class="menu-list">
+            <li class="menu-list-item"><a href="#" class="menu-link">My info</a></li>
+            <li class="menu-list-item"><a href="#" class="menu-link">Account verification</a></li>
+            <li class="menu-list-item"><a href="#" class="menu-link">Change passwords</a></li>
+            <li class="menu-list-item"><a href="#" class="menu-link">Restore passwords</a></li>
+            <li class="menu-list-item"><a href="#" class="menu-link">Newsletters</a></li>
+            <li class="menu-list-item"><a href="#" class="menu-link">Bonus settings</a></li>
+            <li class="menu-list-item"><a href="#" class="menu-link">Account log</a></li>
+            <li class="menu-list-item">
+              <div class="menu-link">
+                <div class="menu-text">Language</div>
+                <div class="menu-ico-container">
+                  <div class="menu-flag-ico"><img src="../../../assets/images/countrylogo.png" class="img-fluid"></div>
                 </div>
-              </li>
-              <li class="menu-list-item"><a routerLink="/login" class="menu-link gray">Logout<div class="menu-logout-ico"><img src="../../../assets/images/icon/exit.png" class="img-fluid"></div></a></li>
-            </ul>
+              </div>
+            </li>
+            <li class="menu-list-item"><a href="" class="menu-link gray" (click)="logout()">Logout<div
+                  class="menu-logout-ico">
+                  <img src="../../../assets/images/icon/exit.png" class="img-fluid">
+                </div></a></li>
+          </ul>
         </div>
       </div>
-      <div class="user-data"><div class="user-name">{{firstName}} {{lastName}}</div></div>
+      <div class="user-data">
+        <div class="user-name">{{firstName}} {{lastName}}</div>
+      </div>
     </div>
     <div class="user-notification">
       <div class="dropdown">
-        <div id="user-notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../../../assets/images/icon/notification-bell.png" class="notiIcon img-fluid" /></div>
+        <div id="user-notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+            src="../../../assets/images/icon/notification-bell.png" class="notiIcon img-fluid" /></div>
         <div class="dropdown-menu notification-menu" aria-labelledby="user-notification">
           <div class="notification-history">
             <div class="history-head">
               <div class="history-head-text">Notifications</div>
-            </div> 
-            <div class="history-close"></div> 
+            </div>
+            <div class="history-close"></div>
             <div class="history-content">
               <div class="content">
                 <div class="content-item empty"></div>
@@ -48,7 +55,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
   <div class="widget">
@@ -70,9 +77,9 @@
         </div>
       </div>
       <div class="col-md-12 status-silver my-0">
-          <div class="status-progress">
-            <mat-slider></mat-slider>
-          </div>
+        <div class="status-progress">
+          <mat-slider></mat-slider>
+        </div>
       </div>
       <div class="col-md-12 status-silver px-0">
         <div class="row mx-0">
@@ -108,14 +115,15 @@
     <div class="row mx-0 mt-2">
       <div class="col-sm-12">
         <div class="deposite-btn">
-          <button class="btn btn-blue mx-auto"><img src="../../../assets/images/icon/coins.png" class="img-fluid mr-2" width="20px"> Deposit</button>
+          <button class="btn btn-blue mx-auto"><img src="../../../assets/images/icon/coins.png" class="img-fluid mr-2"
+              width="20px"> Deposit</button>
         </div>
       </div>
     </div>
-    
+
   </div>
   <div class="drower">
-    <div class="group drower-item" *ngFor="let item of result; let i = index">
+    <div class="group drower-item" *ngFor="let item of result; let i = index" (click)="menu(item)">
       <!-- <div class="drower-item"> -->
       <img [src]="item.icon">
       <a *ngIf="item.submenu.length" (click)="ddToggle(i)" class="light-blue-bg link-arrow">{{ item.linkText }}</a>

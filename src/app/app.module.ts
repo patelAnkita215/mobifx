@@ -41,6 +41,7 @@ import { CommonSpinnerService } from './services/common-spinner.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 import { VerificationDetailsComponent } from './components/verification-details/verification-details.component'
+import { AuthGuard } from '../app/services/auth-guard.services';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { VerificationDetailsComponent } from './components/verification-details/
     VerificationDetailsComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -84,12 +85,13 @@ import { VerificationDetailsComponent } from './components/verification-details/
     MatDialogModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatStepperModule
+    MatStepperModule,
   ],
   providers: [
     ApiService,
     AuthInterceptor,
     CommonSpinnerService,
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

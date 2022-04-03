@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as data from '../../../assets/constants/sidebar.json';
+import { MatDialog } from '@angular/material/dialog';
+import { InviteFriendComponent } from '../../components/invite-friend/invite-friend.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,105 +11,17 @@ import * as data from '../../../assets/constants/sidebar.json';
 })
 export class SidebarComponent implements OnInit {
 
-  // navitems: any = [
-  //   {
-  //     "linkText": "Dashboard",
-  //     "parentLink": "/dashboard",
-  //     "menu": false,
-  //     "submenu": [],
-  //     "icon": "assets/images/icon/dashboard.png"
-  //   },
-  //   {
-  //     "linkText": "Withdraw",
-  //     "parentLink": "/withdraw",
-  //     "menu": false,
-  //     "submenu": [],
-  //     "icon": "assets/images/icon/withdrawal.png"
-  //   },
-  //   {
-  //     "linkText": "Intarnal transfer",
-  //     "parentLink": "/internal-transfer",
-  //     "menu": false,
-  //     "submenu": [],
-  //     "icon": "assets/images/icon/transfer.png"
-  //   },
-  //   {
-  //     "linkText": "Operation history",
-  //     "parentLink": "",
-  //     "menu": false,
-  //     "submenu": [
-  //       {
-  //         "childtext": "Deposit history",
-  //         "link": "/deposit-history"
-  //       },
-  //       {
-  //         "childtext": "Withdrawal history",
-  //         "link": "/withdraw-history"
-  //       },
-  //       {
-  //         "childtext": "Transfer history",
-  //         "link": "/transfer-history"
-  //       }
-  //     ],
-  //     "icon": "assets/images/icon/dollar-sign.png"
-  //   },
-  //   {
-  //     "linkText": "Trading accounts",
-  //     "parentLink": "",
-  //     "menu": false,
-  //     "submenu": [
-  //       {
-  //         "childtext": "Account List",
-  //         "link": "/account-list"
-  //       },
-  //       {
-  //         "childtext": "Manage Bonuses",
-  //         "link": "/manage-bonuses"
-  //       },
-  //       {
-  //         "childtext": "Monitoring",
-  //         "link": "/monitoring"
-  //       },
-  //       {
-  //         "childtext": "Open Real account",
-  //         "link": "/open-real-account"
-  //       },
-  //       {
-  //         "childtext": "Open Demo account",
-  //         "link": "/open-demo-account"
-  //       }
-  //     ],
-  //     "icon": "assets/images/icon/increasing-stocks-graphic.png"
-  //   },
-  //   {
-  //     "linkText": "User Statuses",
-  //     "parentLink": "/user-status",
-  //     "menu": false,
-  //     "submenu": [],
-  //     "icon": "assets/images/icon/king.png"
-  //   },
-  //   {
-  //     "linkText": "Invite a friend",
-  //     "parentLink": "/",
-  //     "menu": false,
-  //     "submenu": [],
-  //     "icon": "assets/images/icon/add-user.png"
-  //   },
-  //   {
-  //     "linkText": "Logout",
-  //     "parentLink": "/login",
-  //     "menu": false,
-  //     "submenu": [],
-  //     "icon": "assets/images/icon/switch.png"
-  //   }
-  // ];
-
   data: any = data;
   result: any = [];
   firstName: any;
   lastName: any;
+  hostname = location.pathname;
+  currentRoute: string;
 
-  constructor() {
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+  ) {
     // console.log("data", this.navitems);
 
     this.firstName = localStorage.getItem('firstname');
@@ -121,10 +36,27 @@ export class SidebarComponent implements OnInit {
 
   ddToggle(i) {
     this.result[i].menu = !this.result[i].menu;
-    // console.log(this.result[i].menu);
   }
 
   ngOnInit(): void {
+  }
+
+  menu(event: any) {
+    // console.log('event', event);
+    if (event?.linkText == "Invite a friend") {
+      // event?.parentLink.push[('dashboard')];
+      this.router.navigate([this.hostname]);
+      this.openDialog();
+    }
+    // console.log('hostname', this.hostname);
+  }
+
+  openDialog() {
+    this.dialog.open(InviteFriendComponent);
+  }
+
+  logout() {
+    localStorage.clear();
   }
 
 }

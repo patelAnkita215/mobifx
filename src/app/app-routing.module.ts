@@ -19,32 +19,36 @@ import { OpenDemoAccountComponent } from './components/open-demo-account/open-de
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component'
 import { VerificationDetailsComponent } from './components/verification-details/verification-details.component'
+import { AuthGuard } from './services/auth-guard.services';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
   { path: 'sidebar', component: SidebarComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'dashboard', component: DashboardComponent, },
-  { path: 'deposit-history', component: DepositHistoryComponent },
-  { path: 'transfer-history', component: TransferHistoryComponent },
-  { path: 'withdraw-history', component: WithdrawHistoryComponent },
-  { path: 'user-status', component: UserStatusComponent },
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'deposit-history', component: DepositHistoryComponent, canActivate: [AuthGuard] },
+  { path: 'transfer-history', component: TransferHistoryComponent, canActivate: [AuthGuard] },
+  { path: 'withdraw-history', component: WithdrawHistoryComponent, canActivate: [AuthGuard] },
+  { path: 'user-status', component: UserStatusComponent, canActivate: [AuthGuard] },
   // { path: 'invite-friend', component: InviteFriendComponent },
-  { path: 'withdraw', component: WithdrawComponent },
-  { path: 'internal-transfer', component: InternalTransferComponent },
-  { path: 'account-list', component: AccountListComponent },
-  { path: 'manage-bonuses', component: ManageBounsesComponent },
-  { path: 'monitoring', component: MonitoringComponent },
-  { path: 'open-real-account', component: OpenRealAccountComponent },
-  { path: 'open-demo-account', component: OpenDemoAccountComponent },
-  { path: 'email-verification', component: EmailVerifyComponent },
+  { path: 'withdraw', component: WithdrawComponent, canActivate: [AuthGuard] },
+  { path: 'internal-transfer', component: InternalTransferComponent, canActivate: [AuthGuard] },
+  { path: 'account-list', component: AccountListComponent, canActivate: [AuthGuard] },
+  { path: 'manage-bonuses', component: ManageBounsesComponent, canActivate: [AuthGuard] },
+  { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
+  { path: 'open-real-account', component: OpenRealAccountComponent, canActivate: [AuthGuard] },
+  { path: 'open-demo-account', component: OpenDemoAccountComponent, canActivate: [AuthGuard] },
+  { path: 'email-verification', component: EmailVerifyComponent, canActivate: [AuthGuard] },
   { path: 'verification-details', component: VerificationDetailsComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [RouterModule.forRoot(routes, {
+    initialNavigation: 'enabled'
+  })],
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }

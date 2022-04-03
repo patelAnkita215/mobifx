@@ -33,8 +33,7 @@ export class LoginComponent implements OnInit {
     this.sharedservice.isHeader = true;
   }
 
-  ngOnInit(): void {
-    localStorage.clear();
+  ngOnInit(): void {   
     // this.init();
   }
 
