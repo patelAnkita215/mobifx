@@ -1,24 +1,22 @@
+<div class="page-overlay-wrapper" *ngIf=showSpinner>
+  <div class="spinner-div">
+    <mat-spinner></mat-spinner>
+  </div>
+</div>
 <header id="header" class="header-container">
   <div class="header-area">
     <!-- menu -->
     <div class="main-header-area">
       <div class="container-fluid d-flex align-items-center">
         <div class="logo mr-auto">
-          <a href="index.html" style="color: #fff"
-            ><img src="../../../assets/images/logoBB.png" class="img-fluid"
-          /></a>
+          <a href="index.html" style="color: #fff"><img src="../../../assets/images/logoBB.png" class="img-fluid" /></a>
         </div>
         <div>
           <ul class="reg-steps">
             <li class="item success">
               <div class="number">
                 <!-- <span>1</span> -->
-                <img
-                  src="../../../assets/images/icon-check-white.svg"
-                  alt="Checked"
-                  width="20"
-                  height="20"
-                />
+                <img src="../../../assets/images/icon-check-white.svg" alt="Checked" width="20" height="20" />
               </div>
               <div class="name">
                 <span class="title">Account</span>
@@ -51,12 +49,8 @@
 </header>
 <main>
   <!-- live chat -->
-  <button
-    class="live-chat-button"
-    data-auto-event-category="UXclick"
-    data-auto-event-action="Support click"
-    data-auto-event-label="livechat"
-  >
+  <button class="live-chat-button" data-auto-event-category="UXclick" data-auto-event-action="Support click"
+    data-auto-event-label="livechat">
     <span class="live-chat-button__label">Live chat support</span>
   </button>
   <!-- deposit history -->
@@ -64,23 +58,20 @@
   <section class="verification pb-3">
     <div class="container">
       <!-- Account details -->
-      <div style="display: none;">
-        <div
-          class="row align-items-center main-box justify-content-center w-100 mx-0"
-        >
+      <div>
+        <div class="row align-items-center main-box justify-content-center w-100 mx-0">
           <div class="col-xl-12 col-md-12 col-lg-12 px-0">
             <div class="d-flex align-items-center mb-1">
               <h1 class="heading">Provide your details</h1>
               <div class="tooltip__ico-question">
-                <img
-                  src="../../../assets/images/icon/question-mark.png"
-                  class="img-fluid"
-                />
+                <img src="../../../assets/images/icon/question-mark.png" class="img-fluid" />
               </div>
             </div>
-            <form>
+            <form [formGroup]="accountInformaton">
               <div class="form-group row align-items-center">
-                <div class="col-md-3"><mat-label>Country</mat-label></div>
+                <div class="col-md-3">
+                  <mat-label>Country</mat-label>
+                </div>
                 <div class="col-md-9">
                   <mat-form-field appearance="outline">
                     <mat-select>
@@ -90,11 +81,16 @@
                 </div>
               </div>
               <div class="form-group row align-items-center">
-                <div class="col-md-3"><mat-label>City</mat-label></div>
+                <div class="col-md-3">
+                  <mat-label>City</mat-label>
+                </div>
                 <div class="col-md-9">
                   <mat-form-field appearance="outline">
-                    <input matInput placeholder="" />
+                    <input type="text" matInput placeholder="" formControlName="city" />
                   </mat-form-field>
+                  <div
+                    *ngIf="(isValidForm || accountInformaton.controls['city'].touched) && accountInformaton.controls['city'].errors"
+                    class="error-msg">Please enter your city</div>
                 </div>
               </div>
               <div class="form-group row align-items-center">
@@ -103,20 +99,30 @@
                 </div>
                 <div class="col-md-9">
                   <mat-form-field appearance="outline">
-                    <input matInput placeholder="" />
+                    <input type="text" matInput placeholder="" formControlName="street_address" />
                   </mat-form-field>
+                  <div
+                    *ngIf="(isValidForm || accountInformaton.controls['street_address'].touched) && accountInformaton.controls['street_address'].errors"
+                    class="error-msg">Please enter your address</div>
                 </div>
               </div>
               <div class="form-group row align-items-center">
-                <div class="col-md-3"><mat-label>Phone number</mat-label></div>
+                <div class="col-md-3">
+                  <mat-label>Phone number</mat-label>
+                </div>
                 <div class="col-md-9">
                   <mat-form-field appearance="outline">
-                    <input matInput placeholder="" />
+                    <input type="number" matInput placeholder="" formControlName="phone_number" />
                   </mat-form-field>
+                  <div
+                    *ngIf="(isValidForm || accountInformaton.controls['phone_number'].touched) && accountInformaton.controls['phone_number'].errors"
+                    class="error-msg">Please enter a valid phone number</div>
                 </div>
               </div>
               <div class="form-group row align-items-center">
-                <div class="col-md-3"><mat-label>Birthday</mat-label></div>
+                <div class="col-md-3">
+                  <mat-label>Birthday</mat-label>
+                </div>
                 <div class="col-md-9">
                   <div class="form-width">
                     <mat-form-field appearance="outline" style="width: 22%">
@@ -134,6 +140,9 @@
                         <mat-option value="option">Year</mat-option>
                       </mat-select>
                     </mat-form-field>
+                    <div
+                      *ngIf="(isValidForm || accountInformaton.controls['phone_number'].touched) && accountInformaton.controls['phone_number'].errors"
+                      class="error-msg">Please enter a valid date</div>
                   </div>
                 </div>
               </div>
@@ -142,16 +151,19 @@
                   <mat-label>Have you traded forex before?</mat-label>
                 </div>
                 <div class="col-md-9">
-                  <mat-radio-group aria-label="Select an option">
-                    <mat-radio-button value="1">Yes</mat-radio-button>
-                    <mat-radio-button value="2">No</mat-radio-button>
+                  <mat-radio-group aria-label="Select an option" (change)="radioChange($event)">
+                    <mat-radio-button value="Yes">Yes</mat-radio-button>
+                    <mat-radio-button value="No">No</mat-radio-button>
                   </mat-radio-group>
+                  <div *ngIf=" isValidTrade" class="error-msg">Please answer the question
+                    above regarding your forex experience
+                  </div>
                 </div>
               </div>
               <div class="row align-items-center">
                 <div class="col-sm-12">
                   <div class="form-button">
-                    <button class="btn btn-blue">Continue</button>
+                    <button class="btn btn-blue" (click)="userInformation()">Continue</button>
                   </div>
                 </div>
               </div>
@@ -160,32 +172,22 @@
         </div>
 
         <!-- choose account -->
-        <div
-          class="row align-items-center main-box justify-content-center w-100 mx-0"
-        >
+        <div class="row align-items-center main-box justify-content-center w-100 mx-0">
           <div class="col-xl-12 col-md-12 col-lg-12 px-0">
             <div class="d-flex align-items-center mb-1">
               <h1 class="heading">Choose account and parameters</h1>
               <div class="tooltip__ico-question">
-                <img
-                  src="../../../assets/images/icon/question-mark.png"
-                  class="img-fluid"
-                />
+                <img src="../../../assets/images/icon/question-mark.png" class="img-fluid" />
               </div>
             </div>
             <form>
               <div class="simple-card row">
                 <div class="col-md-5 px-0">
                   <mat-card class="account-type selected">
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
+                    <div class="d-flex align-items-center justify-content-between">
                       <h3 class="card-title">OctaFX MT5</h3>
                       <div class="mt5-img">
-                        <img
-                          src="../../../assets/images/mt5.svg"
-                          class="img-fluid"
-                        />
+                        <img src="../../../assets/images/mt5.svg" class="img-fluid" />
                       </div>
                     </div>
                     <hr />
@@ -235,24 +237,17 @@
                         <p class="descr">80 instruments</p>
                       </li>
                     </ul>
-                    <div
-                      class="d-flex align-items-center justify-content-center"
-                    >
+                    <div class="d-flex align-items-center justify-content-center">
                       <a class="btn btn-blue" type="button"> Selected </a>
                     </div>
                   </mat-card>
                 </div>
                 <div class="col-md-5 px-0">
                   <mat-card class="account-type">
-                    <div
-                      class="d-flex align-items-center justify-content-between"
-                    >
+                    <div class="d-flex align-items-center justify-content-between">
                       <h3 class="card-title">OctaFX MT5</h3>
                       <div class="mt5-img">
-                        <img
-                          src="../../../assets/images/mt5.svg"
-                          class="img-fluid"
-                        />
+                        <img src="../../../assets/images/mt5.svg" class="img-fluid" />
                       </div>
                     </div>
                     <hr />
@@ -302,9 +297,7 @@
                         <p class="descr">80 instruments</p>
                       </li>
                     </ul>
-                    <div
-                      class="d-flex align-items-center justify-content-center"
-                    >
+                    <div class="d-flex align-items-center justify-content-center">
                       <a class="btn btn-blue" type="button"> Selected </a>
                     </div>
                   </mat-card>
@@ -315,38 +308,18 @@
                   <h4 class="title">
                     Account type
                     <div class="tooltip__ico-question">
-                      <img
-                        src="../../../assets/images/icon/question-mark.png"
-                        class="img-fluid"
-                      />
+                      <img src="../../../assets/images/icon/question-mark.png" class="img-fluid" />
                     </div>
                   </h4>
                   <div class="cntrl">
                     <div class="switcher">
                       <div class="switcher-item">
-                        <input
-                          id="server-0"
-                          name="server"
-                          type="radio"
-                          class="switcher-radio"
-                          value="real"
-                          checked
-                        />
-                        <label for="server-0" class="switcher-label"
-                          >Real</label
-                        >
+                        <input id="server-0" name="server" type="radio" class="switcher-radio" value="real" checked />
+                        <label for="server-0" class="switcher-label">Real</label>
                       </div>
                       <div class="switcher-item">
-                        <input
-                          id="server-1"
-                          name="server"
-                          type="radio"
-                          class="switcher-radio"
-                          value="demo"
-                        />
-                        <label for="server-1" class="switcher-label"
-                          >Demo</label
-                        >
+                        <input id="server-1" name="server" type="radio" class="switcher-radio" value="demo" />
+                        <label for="server-1" class="switcher-label">Demo</label>
                       </div>
                     </div>
                   </div>
@@ -355,38 +328,19 @@
                   <h4 class="title">
                     Currency
                     <div class="tooltip__ico-question">
-                      <img
-                        src="../../../assets/images/icon/question-mark.png"
-                        class="img-fluid"
-                      />
+                      <img src="../../../assets/images/icon/question-mark.png" class="img-fluid" />
                     </div>
                   </h4>
                   <div class="cntrl">
                     <div class="switcher">
                       <div class="switcher-item">
-                        <input
-                          id="currency-0"
-                          name="currency"
-                          type="radio"
-                          class="switcher-radio"
-                          value="USD"
-                          checked
-                        />
-                        <label for="currency-0" class="switcher-label"
-                          >USD</label
-                        >
+                        <input id="currency-0" name="currency" type="radio" class="switcher-radio" value="USD"
+                          checked />
+                        <label for="currency-0" class="switcher-label">USD</label>
                       </div>
                       <div class="switcher-item">
-                        <input
-                          id="currency-1"
-                          name="currency"
-                          type="radio"
-                          class="switcher-radio"
-                          value="EUR"
-                        />
-                        <label for="currency-1" class="switcher-label"
-                          >EUR</label
-                        >
+                        <input id="currency-1" name="currency" type="radio" class="switcher-radio" value="EUR" />
+                        <label for="currency-1" class="switcher-label">EUR</label>
                       </div>
                     </div>
                   </div>
@@ -395,10 +349,7 @@
                   <h4 class="title">
                     Leverage
                     <div class="tooltip__ico-question">
-                      <img
-                        src="../../../assets/images/icon/question-mark.png"
-                        class="img-fluid"
-                      />
+                      <img src="../../../assets/images/icon/question-mark.png" class="img-fluid" />
                     </div>
                   </h4>
                   <div class="leverage-select">
@@ -413,38 +364,19 @@
                   <h4 class="title">
                     Fixed rate
                     <div class="tooltip__ico-question">
-                      <img
-                        src="../../../assets/images/icon/question-mark.png"
-                        class="img-fluid"
-                      />
+                      <img src="../../../assets/images/icon/question-mark.png" class="img-fluid" />
                     </div>
                   </h4>
                   <div class="cntrl">
                     <div class="switcher">
                       <div class="switcher-item">
-                        <input
-                          id="fixedRate-0"
-                          name="fixedRate"
-                          type="radio"
-                          class="switcher-radio"
-                          value="true"
-                          checked
-                        />
-                        <label for="fixedRate-0" class="switcher-label"
-                          >On</label
-                        >
+                        <input id="fixedRate-0" name="fixedRate" type="radio" class="switcher-radio" value="true"
+                          checked />
+                        <label for="fixedRate-0" class="switcher-label">On</label>
                       </div>
                       <div class="switcher-item">
-                        <input
-                          id="fixedRate-1"
-                          name="fixedRate"
-                          type="radio"
-                          class="switcher-radio"
-                          value="false"
-                        />
-                        <label for="fixedRate-1" class="switcher-label"
-                          >Off</label
-                        >
+                        <input id="fixedRate-1" name="fixedRate" type="radio" class="switcher-radio" value="false" />
+                        <label for="fixedRate-1" class="switcher-label">Off</label>
                       </div>
                     </div>
                   </div>
@@ -465,22 +397,14 @@
       </div>
 
       <!-- Deposit details -->
-      <div
-        class="row align-items-center main-box justify-content-center w-100 mx-0"
-      >
+      <div class="row align-items-center main-box justify-content-center w-100 mx-0">
         <div class="col-xl-12 col-md-12 col-lg-12 px-0">
           <div class="deposit">
             <form class="form-wrapper-inner">
               <h2 class="heading">Your account was successfully created</h2>
               <div class="indent-container">
                 <div class="created-account-data">
-                  <img
-                    class="logo"
-                    src="../../../assets/images/mt4_xs.svg"
-                    alt="mt4"
-                    title="mt4"
-                    height="30px"
-                  />
+                  <img class="logo" src="../../../assets/images/mt4_xs.svg" alt="mt4" title="mt4" height="30px" />
                   <div class="info-block">
                     <div class="descr">
                       <div class="title">Account number</div>
@@ -512,135 +436,53 @@
               </p>
               <div class="radio-box-container">
                 <label class="radio-box-img active">
-                  <input
-                    name="labelSelector"
-                    type="radio"
-                    class="radio-box-img-input"
-                    value="incs4"
-                  />
-                  <img
-                    src="../../../assets/images/payment-option/incs.svg"
-                    class="radio-box-img-ico"
-                  />
+                  <input name="labelSelector" type="radio" class="radio-box-img-input" value="incs4" />
+                  <img src="../../../assets/images/payment-option/incs.svg" class="radio-box-img-ico" />
                 </label>
                 <label class="radio-box-img">
-                  <input
-                    name="labelSelector"
-                    type="radio"
-                    class="radio-box-img-input"
-                    value="ind"
-                  />
-                  <img
-                    src="../../../assets/images/payment-option/local-bank.svg"
-                    class="radio-box-img-ico"
-                  />
+                  <input name="labelSelector" type="radio" class="radio-box-img-input" value="ind" />
+                  <img src="../../../assets/images/payment-option/local-bank.svg" class="radio-box-img-ico" />
                   <div class="radio-box-img-text">India Local Banks</div>
                 </label>
                 <label class="radio-box-img">
-                  <input
-                    name="labelSelector"
-                    type="radio"
-                    class="radio-box-img-input"
-                    value="btc"
-                  />
-                  <img
-                    src="../../../assets/images/payment-option/btc.svg"
-                    class="radio-box-img-ico"
-                  />
+                  <input name="labelSelector" type="radio" class="radio-box-img-input" value="btc" />
+                  <img src="../../../assets/images/payment-option/btc.svg" class="radio-box-img-ico" />
                 </label>
                 <label class="radio-box-img">
-                  <input
-                    name="labelSelector"
-                    type="radio"
-                    class="radio-box-img-input"
-                    value="doge"
-                  />
-                  <img
-                    src="../../../assets/images/payment-option/doge.svg"
-                    class="radio-box-img-ico"
-                  />
+                  <input name="labelSelector" type="radio" class="radio-box-img-input" value="doge" />
+                  <img src="../../../assets/images/payment-option/doge.svg" class="radio-box-img-ico" />
                   <div class="radio-box-img-text">Dogecoin</div>
                 </label>
                 <label class="radio-box-img">
-                  <input
-                    name="labelSelector"
-                    type="radio"
-                    class="radio-box-img-input"
-                    value="binpay"
-                  />
-                  <img
-                    src="../../../assets/images/payment-option/binpay.svg"
-                    class="radio-box-img-ico"
-                  />
+                  <input name="labelSelector" type="radio" class="radio-box-img-input" value="binpay" />
+                  <img src="../../../assets/images/payment-option/binpay.svg" class="radio-box-img-ico" />
                   <div class="radio-box-img-text">Ethereum</div>
                 </label>
                 <label class="radio-box-img">
-                  <input
-                    name="labelSelector"
-                    type="radio"
-                    class="radio-box-img-input"
-                    value="ltc"
-                  />
-                  <img
-                    src="../../../assets/images/payment-option/ltc.svg"
-                    class="radio-box-img-ico"
-                  />
+                  <input name="labelSelector" type="radio" class="radio-box-img-input" value="ltc" />
+                  <img src="../../../assets/images/payment-option/ltc.svg" class="radio-box-img-ico" />
                   <div class="radio-box-img-text">Litecoin</div>
                 </label>
                 <label class="radio-box-img">
-                  <input
-                    name="labelSelector"
-                    type="radio"
-                    class="radio-box-img-input"
-                    value="nt"
-                  />
-                  <img
-                    src="../../../assets/images/payment-option/nt.svg"
-                    class="radio-box-img-ico"
-                  />
+                  <input name="labelSelector" type="radio" class="radio-box-img-input" value="nt" />
+                  <img src="../../../assets/images/payment-option/nt.svg" class="radio-box-img-ico" />
                 </label>
                 <label class="radio-box-img">
-                  <input
-                    name="labelSelector"
-                    type="radio"
-                    class="radio-box-img-input"
-                    value="mb"
-                  />
-                  <img
-                    src="../../../assets/images/payment-option/mb.svg"
-                    class="radio-box-img-ico"
-                  />
+                  <input name="labelSelector" type="radio" class="radio-box-img-input" value="mb" />
+                  <img src="../../../assets/images/payment-option/mb.svg" class="radio-box-img-ico" />
                 </label>
                 <label class="radio-box-img">
-                  <input
-                    name="labelSelector"
-                    type="radio"
-                    class="radio-box-img-input"
-                    value="usdte"
-                  />
-                  <img
-                    src="../../../assets/images/payment-option/usdte.svg"
-                    class="radio-box-img-ico"
-                  />
+                  <input name="labelSelector" type="radio" class="radio-box-img-input" value="usdte" />
+                  <img src="../../../assets/images/payment-option/usdte.svg" class="radio-box-img-ico" />
                   <div class="radio-box-img-text">Tether (ERC20)</div>
                 </label>
                 <label class="radio-box-img">
-                  <input
-                    name="labelSelector"
-                    type="radio"
-                    class="radio-box-img-input"
-                    value="usdtt"
-                  />
-                  <img
-                    src="../../../assets/images/payment-option/usdtt.svg"
-                    class="radio-box-img-ico"
-                  />
+                  <input name="labelSelector" type="radio" class="radio-box-img-input" value="usdtt" />
+                  <img src="../../../assets/images/payment-option/usdtt.svg" class="radio-box-img-ico" />
                   <div class="radio-box-img-text">Tether (TRC20)</div>
                 </label>
               </div>
-              <ul
-                class="list-commission d-flex align-items-center justify-content-center"
-              >
+              <ul class="list-commission d-flex align-items-center justify-content-center">
                 <li class="list-item">No commission</li>
                 <li class="list-item">Best exchange rates</li>
                 <li class="list-item">
@@ -652,8 +494,8 @@
 
                 <div>
                   <mat-accordion>
-                    <mat-expansion-panel  class="bonuses-advantages" (opened)="panelOpenState = true"
-                                         (closed)="panelOpenState = false">
+                    <mat-expansion-panel class="bonuses-advantages" (opened)="panelOpenState = true"
+                      (closed)="panelOpenState = false">
                       <mat-expansion-panel-header>
                         <mat-panel-title>
                           What advantages does the bonus bring?
@@ -662,12 +504,8 @@
                       <ul class="bonuses-advantages-list">
                         <li class="bonuses-advantages-listitem">
                           <i class="bonuses-advantages-listicon">
-                            <img
-                              src="../../../assets/images/bonus-advantage-01.jpg"
-                              width="48"
-                              height="48"
-                              class="bonuses-advantages-listpic"
-                            />
+                            <img src="../../../assets/images/bonus-advantage-01.jpg" width="48" height="48"
+                              class="bonuses-advantages-listpic" />
                           </i>
                           <div class="bonuses-advantages-listtext">
                             <p class="bonuses-advantages-listtitle">
@@ -677,12 +515,8 @@
                         </li>
                         <li class="bonuses-advantages-listitem">
                           <i class="bonuses-advantages-listicon">
-                            <img
-                              src="../../../assets/images/bonus-advantage-02.jpg"
-                              width="48"
-                              height="48"
-                              class="bonuses-advantages-listpic"
-                            />
+                            <img src="../../../assets/images/bonus-advantage-02.jpg" width="48" height="48"
+                              class="bonuses-advantages-listpic" />
                           </i>
                           <div class="bonuses-advantages-listtext">
                             <p class="bonuses-advantages-listtitle">
@@ -692,12 +526,8 @@
                         </li>
                         <li class="bonuses-advantages-listitem">
                           <i class="bonuses-advantages-listicon">
-                            <img
-                              src="../../../assets/images/bonus-advantage-03.jpg"
-                              width="48"
-                              height="48"
-                              class="bonuses-advantages-listpic"
-                            />
+                            <img src="../../../assets/images/bonus-advantage-03.jpg" width="48" height="48"
+                              class="bonuses-advantages-listpic" />
                           </i>
                           <div class="bonuses-advantages-listtext">
                             <p class="bonuses-advantages-listtitle">
@@ -710,12 +540,8 @@
                         </li>
                         <li class="bonuses-advantages-listitem">
                           <i class="bonuses-advantages-listicon">
-                            <img
-                              src="../../../assets/images/bonus-advantage-04.jpg"
-                              width="48"
-                              height="48"
-                              class="bonuses-advantages-listpic"
-                            />
+                            <img src="../../../assets/images/bonus-advantage-04.jpg" width="48" height="48"
+                              class="bonuses-advantages-listpic" />
                           </i>
                           <div class="bonuses-advantages-listtext">
                             <p class="bonuses-advantages-listtitle">
@@ -726,27 +552,15 @@
                       </ul>
                     </mat-expansion-panel>
                   </mat-accordion>
-                  
+
                 </div>
 
-                <div
-                  class="promo-bonuses"
-                >
-                  <label
-                    class="promo-header"
-                  >
+                <div class="promo-bonuses">
+                  <label class="promo-header">
                     <div class="promo-header-text">
-                      <input
-                        type="checkbox"
-                        class="promoinput"
-                        name="bonuscategory"
-                      />
-                      <div
-                        class="promoico promoicocheckbox"
-                      ></div>
-                      <div
-                        class="promo-bonuses-title promotext"
-                      >
+                      <input type="checkbox" class="promoinput" name="bonuscategory" />
+                      <div class="promoico promoicocheckbox"></div>
+                      <div class="promo-bonuses-title promotext">
                         Unlimited 10–50% bonus
                       </div>
                     </div>
@@ -755,141 +569,76 @@
                     </div>
 
                     <picture class="promo-bonuses-img-container">
-                      <source
-                        type="image/webp"
-                        alt="Promo bonuses"
-                        class="promo-bonuses-img"
-                      />
-                      <img
-                        src="../../../assets/images/standard.webp"
-                        class="promo-bonuses-img"
-                        alt="Promo bonuses"
-                      />
+                      <source type="image/webp" alt="Promo bonuses" class="promo-bonuses-img" />
+                      <img src="../../../assets/images/standard.webp" class="promo-bonuses-img" alt="Promo bonuses" />
                     </picture>
                   </label>
-                  <ul
-                    class="promo-bonuses-list close"
-                  >
+                  <ul class="promo-bonuses-list close">
                     <li class="promo-bonuses-list-item">
-                      <label
-                        class="promo-bonuses-list-item-switcher"
-                      >
+                      <label class="promo-bonuses-list-item-switcher">
                         <div class="promoline">
-                          <input
-                            type="radio"
-                            name="bonusvalue"
-                            class="promoinput"
-                            value="standard-10"
-                          />
-                          <div
-                            class="promoico promoicoradio"
-                          ></div>
+                          <input type="radio" name="bonusvalue" class="promoinput" value="standard-10" />
+                          <div class="promoico promoicoradio"></div>
                           <div class="promotext">10%</div>
                         </div>
                       </label>
                       <div class="promo-bonuses-counting">
-                        <div
-                          class="promo-bonuses-counting-text"
-                        >
+                        <div class="promo-bonuses-counting-text">
                           To see the bonus amount, specify your deposit amount
                           above.
                         </div>
-                        <div
-                          class="promo-bonuses-counting-text"
-                          data-bonus-amount="10"
-                          data-bonus-reuired-volume="50"
-                        >
+                        <div class="promo-bonuses-counting-text" data-bonus-amount="10" data-bonus-reuired-volume="50">
                           Requires you to trade
-                          <span class="promo-bonuses-counting-data old"
-                            ><span class="js-required-to-trade-lots-old"></span>
-                            lots</span
-                          >
-                          <span class="promo-bonuses-counting-data new"
-                            ><span class="js-required-to-trade-lots-new"></span>
-                            lots</span
-                          >
+                          <span class="promo-bonuses-counting-data old"><span
+                              class="js-required-to-trade-lots-old"></span>
+                            lots</span>
+                          <span class="promo-bonuses-counting-data new"><span
+                              class="js-required-to-trade-lots-new"></span>
+                            lots</span>
                         </div>
                       </div>
                     </li>
                     <li class="promo-bonuses-list-item">
-                      <label
-                        class="promo-bonuses-list-item-switcher styled-form-switcher"
-                      >
+                      <label class="promo-bonuses-list-item-switcher styled-form-switcher">
                         <div class="promoline">
-                          <input
-                            type="radio"
-                            name="bonus_value"
-                            class="promoinput"
-                            value="standard-30"
-                          />
-                          <div
-                            class="promoico promoico_radio"
-                          ></div>
+                          <input type="radio" name="bonus_value" class="promoinput" value="standard-30" />
+                          <div class="promoico promoico_radio"></div>
                           <div class="promotext">30%</div>
                         </div>
                       </label>
                       <div class="promo-bonuses-counting">
-                        <div
-                          class="promo-bonuses-counting-text"
-                        >
+                        <div class="promo-bonuses-counting-text">
                           To see the bonus amount, specify your deposit amount
                           above.
                         </div>
-                        <div
-                          class="promo-bonuses-counting-text"
-                          data-bonus-amount="30"
-                          data-bonus-reuired-volume="50"
-                        >
+                        <div class="promo-bonuses-counting-text" data-bonus-amount="30" data-bonus-reuired-volume="50">
                           Requires you to trade
-                          <span class="promo-bonuses-counting-data old"
-                            ><span class=""></span>
-                            lots</span
-                          >
-                          <span class="promo-bonuses-counting-data new"
-                            ><span class=""></span>
-                            lots</span
-                          >
+                          <span class="promo-bonuses-counting-data old"><span class=""></span>
+                            lots</span>
+                          <span class="promo-bonuses-counting-data new"><span class=""></span>
+                            lots</span>
                         </div>
                       </div>
                     </li>
                     <li class="promo-bonuses-list-item">
-                      <label
-                        class="promo-bonuses-list-item-switcher"
-                      >
+                      <label class="promo-bonuses-list-item-switcher">
                         <div class="promoline">
-                          <input
-                            type="radio"
-                            name="bonus_value"
-                            class="promoinput"
-                            value="standard-50"
-                          />
-                          <div
-                            class="promoico promoico_radio"
-                          ></div>
+                          <input type="radio" name="bonus_value" class="promoinput" value="standard-50" />
+                          <div class="promoico promoico_radio"></div>
                           <div class="promotext">50%</div>
                         </div>
                       </label>
                       <div class="promo-bonuses-counting">
-                        <div
-                          class="promo-bonuses-counting-text"
-                        >
+                        <div class="promo-bonuses-counting-text">
                           To see the bonus amount, specify your deposit amount
                           above.
                         </div>
-                        <div
-                          class="promo-bonuses-counting-text"
-                          data-bonus-amount="50"
-                          data-bonus-reuired-volume="50"
-                        >
+                        <div class="promo-bonuses-counting-text" data-bonus-amount="50" data-bonus-reuired-volume="50">
                           Requires you to trade
-                          <span class="promo-bonuses-counting-data old"
-                            ><span class=""></span>
-                            lots</span
-                          >
-                          <span class="promo-bonuses-counting-data new"
-                            ><span class=""></span>
-                            lots</span
-                          >
+                          <span class="promo-bonuses-counting-data old"><span class=""></span>
+                            lots</span>
+                          <span class="promo-bonuses-counting-data new"><span class=""></span>
+                            lots</span>
                         </div>
                       </div>
                     </li>
