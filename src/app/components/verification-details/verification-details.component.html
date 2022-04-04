@@ -10,15 +10,21 @@
         </div>
         <div>
           <ul class="reg-steps">
-            <li class="item current">
+            <li class="item success">
               <div class="number">
-                <span>1</span>
+                <!-- <span>1</span> -->
+                <img
+                  src="../../../assets/images/icon-check-white.svg"
+                  alt="Checked"
+                  width="20"
+                  height="20"
+                />
               </div>
               <div class="name">
                 <span class="title">Account</span>
               </div>
             </li>
-            <li class="item">
+            <li class="item current">
               <div class="number">
                 <span>2</span>
               </div>
@@ -58,7 +64,7 @@
   <section class="verification pb-3">
     <div class="container">
       <!-- Account details -->
-      <div>
+      <div style="display: none;">
         <div
           class="row align-items-center main-box justify-content-center w-100 mx-0"
         >
@@ -463,22 +469,50 @@
         class="row align-items-center main-box justify-content-center w-100 mx-0"
       >
         <div class="col-xl-12 col-md-12 col-lg-12 px-0">
-          <div class="d-flex align-items-center mb-1">
-            <h1 class="heading">Provide your details</h1>
-            <div class="tooltip__ico-question">
-              <img
-                src="../../../assets/images/icon/question-mark.png"
-                class="img-fluid"
-              />
-            </div>
-          </div>
           <div class="deposit">
             <form class="form-wrapper-inner">
-              <h2 class="heading">Payment methods</h2>
+              <h2 class="heading">Your account was successfully created</h2>
+              <div class="indent-container">
+                <div class="created-account-data">
+                  <img
+                    class="logo"
+                    src="../../../assets/images/mt4_xs.svg"
+                    alt="mt4"
+                    title="mt4"
+                    height="30px"
+                  />
+                  <div class="info-block">
+                    <div class="descr">
+                      <div class="title">Account number</div>
+                      <div class="val">19240421</div>
+                    </div>
+                    <div class="descr">
+                      <div class="title">Server</div>
+                      <div class="val">OctaFX-Real7</div>
+                    </div>
+                    <div class="descr">
+                      <div class="title">Account type</div>
+                      <div class="val">OctaFX MT4</div>
+                    </div>
+
+                    <div class="descr">
+                      <div class="title">Currency</div>
+                      <div class="val">USD</div>
+                    </div>
+
+                    <div class="descr">
+                      <div class="title">Leverage</div>
+                      <div class="val">1:500</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <p class="title-t10">
+                We've sent you an email containing your account login details
+              </p>
               <div class="radio-box-container">
-                <label class="radio-box-img">
+                <label class="radio-box-img active">
                   <input
-                  
                     name="labelSelector"
                     type="radio"
                     class="radio-box-img-input"
@@ -491,7 +525,6 @@
                 </label>
                 <label class="radio-box-img">
                   <input
-                  
                     name="labelSelector"
                     type="radio"
                     class="radio-box-img-input"
@@ -505,7 +538,6 @@
                 </label>
                 <label class="radio-box-img">
                   <input
-                  
                     name="labelSelector"
                     type="radio"
                     class="radio-box-img-input"
@@ -518,7 +550,6 @@
                 </label>
                 <label class="radio-box-img">
                   <input
-                  
                     name="labelSelector"
                     type="radio"
                     class="radio-box-img-input"
@@ -532,7 +563,6 @@
                 </label>
                 <label class="radio-box-img">
                   <input
-                  
                     name="labelSelector"
                     type="radio"
                     class="radio-box-img-input"
@@ -546,7 +576,6 @@
                 </label>
                 <label class="radio-box-img">
                   <input
-                  
                     name="labelSelector"
                     type="radio"
                     class="radio-box-img-input"
@@ -560,7 +589,6 @@
                 </label>
                 <label class="radio-box-img">
                   <input
-                  
                     name="labelSelector"
                     type="radio"
                     class="radio-box-img-input"
@@ -573,7 +601,6 @@
                 </label>
                 <label class="radio-box-img">
                   <input
-                  
                     name="labelSelector"
                     type="radio"
                     class="radio-box-img-input"
@@ -586,7 +613,6 @@
                 </label>
                 <label class="radio-box-img">
                   <input
-                  
                     name="labelSelector"
                     type="radio"
                     class="radio-box-img-input"
@@ -600,7 +626,6 @@
                 </label>
                 <label class="radio-box-img">
                   <input
-                  
                     name="labelSelector"
                     type="radio"
                     class="radio-box-img-input"
@@ -613,6 +638,264 @@
                   <div class="radio-box-img-text">Tether (TRC20)</div>
                 </label>
               </div>
+              <ul
+                class="list-commission d-flex align-items-center justify-content-center"
+              >
+                <li class="list-item">No commission</li>
+                <li class="list-item">Best exchange rates</li>
+                <li class="list-item">
+                  <span> 50% deposit bonus </span>
+                </li>
+              </ul>
+              <section class="promo-bonuses-container">
+                <h2 class="heading">Choose bonus</h2>
+
+                <div>
+                  <mat-accordion>
+                    <mat-expansion-panel  class="bonuses-advantages" (opened)="panelOpenState = true"
+                                         (closed)="panelOpenState = false">
+                      <mat-expansion-panel-header>
+                        <mat-panel-title>
+                          What advantages does the bonus bring?
+                        </mat-panel-title>
+                      </mat-expansion-panel-header>
+                      <ul class="bonuses-advantages-list">
+                        <li class="bonuses-advantages-listitem">
+                          <i class="bonuses-advantages-listicon">
+                            <img
+                              src="../../../assets/images/bonus-advantage-01.jpg"
+                              width="48"
+                              height="48"
+                              class="bonuses-advantages-listpic"
+                            />
+                          </i>
+                          <div class="bonuses-advantages-listtext">
+                            <p class="bonuses-advantages-listtitle">
+                              Provides higher trading volume.
+                            </p>
+                          </div>
+                        </li>
+                        <li class="bonuses-advantages-listitem">
+                          <i class="bonuses-advantages-listicon">
+                            <img
+                              src="../../../assets/images/bonus-advantage-02.jpg"
+                              width="48"
+                              height="48"
+                              class="bonuses-advantages-listpic"
+                            />
+                          </i>
+                          <div class="bonuses-advantages-listtext">
+                            <p class="bonuses-advantages-listtitle">
+                              Does not block withdrawals.
+                            </p>
+                          </div>
+                        </li>
+                        <li class="bonuses-advantages-listitem">
+                          <i class="bonuses-advantages-listicon">
+                            <img
+                              src="../../../assets/images/bonus-advantage-03.jpg"
+                              width="48"
+                              height="48"
+                              class="bonuses-advantages-listpic"
+                            />
+                          </i>
+                          <div class="bonuses-advantages-listtext">
+                            <p class="bonuses-advantages-listtitle">
+                              Can be converted to your money in full by trading.
+                            </p>
+                            <p class="bonuses-advantages-listdescr">
+                              No time limits on completing the bonus.
+                            </p>
+                          </div>
+                        </li>
+                        <li class="bonuses-advantages-listitem">
+                          <i class="bonuses-advantages-listicon">
+                            <img
+                              src="../../../assets/images/bonus-advantage-04.jpg"
+                              width="48"
+                              height="48"
+                              class="bonuses-advantages-listpic"
+                            />
+                          </i>
+                          <div class="bonuses-advantages-listtext">
+                            <p class="bonuses-advantages-listtitle">
+                              Can be cancelled at your will at any moment.
+                            </p>
+                          </div>
+                        </li>
+                      </ul>
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                  
+                </div>
+
+                <div
+                  class="promo-bonuses"
+                >
+                  <label
+                    class="promo-header"
+                  >
+                    <div class="promo-header-text">
+                      <input
+                        type="checkbox"
+                        class="promoinput"
+                        name="bonuscategory"
+                      />
+                      <div
+                        class="promoico promoicocheckbox"
+                      ></div>
+                      <div
+                        class="promo-bonuses-title promotext"
+                      >
+                        Unlimited 10–50% bonus
+                      </div>
+                    </div>
+                    <div class="promo-bonuses-header-switcher">
+                      Select the percentage and apply the bonus
+                    </div>
+
+                    <picture class="promo-bonuses-img-container">
+                      <source
+                        type="image/webp"
+                        alt="Promo bonuses"
+                        class="promo-bonuses-img"
+                      />
+                      <img
+                        src="../../../assets/images/standard.webp"
+                        class="promo-bonuses-img"
+                        alt="Promo bonuses"
+                      />
+                    </picture>
+                  </label>
+                  <ul
+                    class="promo-bonuses-list close"
+                  >
+                    <li class="promo-bonuses-list-item">
+                      <label
+                        class="promo-bonuses-list-item-switcher"
+                      >
+                        <div class="promoline">
+                          <input
+                            type="radio"
+                            name="bonusvalue"
+                            class="promoinput"
+                            value="standard-10"
+                          />
+                          <div
+                            class="promoico promoicoradio"
+                          ></div>
+                          <div class="promotext">10%</div>
+                        </div>
+                      </label>
+                      <div class="promo-bonuses-counting">
+                        <div
+                          class="promo-bonuses-counting-text"
+                        >
+                          To see the bonus amount, specify your deposit amount
+                          above.
+                        </div>
+                        <div
+                          class="promo-bonuses-counting-text"
+                          data-bonus-amount="10"
+                          data-bonus-reuired-volume="50"
+                        >
+                          Requires you to trade
+                          <span class="promo-bonuses-counting-data old"
+                            ><span class="js-required-to-trade-lots-old"></span>
+                            lots</span
+                          >
+                          <span class="promo-bonuses-counting-data new"
+                            ><span class="js-required-to-trade-lots-new"></span>
+                            lots</span
+                          >
+                        </div>
+                      </div>
+                    </li>
+                    <li class="promo-bonuses-list-item">
+                      <label
+                        class="promo-bonuses-list-item-switcher styled-form-switcher"
+                      >
+                        <div class="promoline">
+                          <input
+                            type="radio"
+                            name="bonus_value"
+                            class="promoinput"
+                            value="standard-30"
+                          />
+                          <div
+                            class="promoico promoico_radio"
+                          ></div>
+                          <div class="promotext">30%</div>
+                        </div>
+                      </label>
+                      <div class="promo-bonuses-counting">
+                        <div
+                          class="promo-bonuses-counting-text"
+                        >
+                          To see the bonus amount, specify your deposit amount
+                          above.
+                        </div>
+                        <div
+                          class="promo-bonuses-counting-text"
+                          data-bonus-amount="30"
+                          data-bonus-reuired-volume="50"
+                        >
+                          Requires you to trade
+                          <span class="promo-bonuses-counting-data old"
+                            ><span class=""></span>
+                            lots</span
+                          >
+                          <span class="promo-bonuses-counting-data new"
+                            ><span class=""></span>
+                            lots</span
+                          >
+                        </div>
+                      </div>
+                    </li>
+                    <li class="promo-bonuses-list-item">
+                      <label
+                        class="promo-bonuses-list-item-switcher"
+                      >
+                        <div class="promoline">
+                          <input
+                            type="radio"
+                            name="bonus_value"
+                            class="promoinput"
+                            value="standard-50"
+                          />
+                          <div
+                            class="promoico promoico_radio"
+                          ></div>
+                          <div class="promotext">50%</div>
+                        </div>
+                      </label>
+                      <div class="promo-bonuses-counting">
+                        <div
+                          class="promo-bonuses-counting-text"
+                        >
+                          To see the bonus amount, specify your deposit amount
+                          above.
+                        </div>
+                        <div
+                          class="promo-bonuses-counting-text"
+                          data-bonus-amount="50"
+                          data-bonus-reuired-volume="50"
+                        >
+                          Requires you to trade
+                          <span class="promo-bonuses-counting-data old"
+                            ><span class=""></span>
+                            lots</span
+                          >
+                          <span class="promo-bonuses-counting-data new"
+                            ><span class=""></span>
+                            lots</span
+                          >
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </section>
             </form>
           </div>
         </div>

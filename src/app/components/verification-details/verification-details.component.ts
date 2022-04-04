@@ -13,6 +13,8 @@ import { SharedService } from '../../services/shared.service';
 })
 export class VerificationDetailsComponent implements OnInit {
 
+  panelOpenState = false;
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
