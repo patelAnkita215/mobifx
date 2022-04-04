@@ -42,6 +42,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 import { VerificationDetailsComponent } from './components/verification-details/verification-details.component'
 import { AuthGuard } from '../app/services/auth-guard.services';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { AuthGuard } from '../app/services/auth-guard.services';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatStepperModule,
+    MatExpansionModule
   ],
   providers: [
     ApiService,

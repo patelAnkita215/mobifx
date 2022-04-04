@@ -12,6 +12,8 @@ import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 })
 export class VerificationDetailsComponent implements OnInit {
 
+  panelOpenState = false;
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
