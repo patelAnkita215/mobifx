@@ -64,7 +64,7 @@
   <section class="verification pb-3">
     <div class="container">
       <!-- Account details -->
-      <div style="display: none;">
+      <div>
         <div
           class="row align-items-center main-box justify-content-center w-100 mx-0"
         >
@@ -729,11 +729,12 @@
                   
                 </div>
 
-                <div
-                  class="promo-bonuses"
-                >
-                  <label
-                    class="promo-header"
+                <div>
+                <mat-accordion>
+                  <mat-expansion-panel hideToggle class="promo-bonuses">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title
+                    class="promo-header w-100"
                   >
                     <div class="promo-header-text">
                       <input
@@ -766,9 +767,10 @@
                         alt="Promo bonuses"
                       />
                     </picture>
-                  </label>
-                  <ul
-                    class="promo-bonuses-list close"
+                  </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <ul
+                    class="promo-bonuses-list"
                   >
                     <li class="promo-bonuses-list-item">
                       <label
@@ -789,23 +791,17 @@
                       </label>
                       <div class="promo-bonuses-counting">
                         <div
-                          class="promo-bonuses-counting-text"
+                          class="promo-bonuses-counting-text" style="display: none;"
                         >
                           To see the bonus amount, specify your deposit amount
                           above.
                         </div>
                         <div
                           class="promo-bonuses-counting-text"
-                          data-bonus-amount="10"
-                          data-bonus-reuired-volume="50"
                         >
                           Requires you to trade
-                          <span class="promo-bonuses-counting-data old"
-                            ><span class="js-required-to-trade-lots-old"></span>
-                            lots</span
-                          >
                           <span class="promo-bonuses-counting-data new"
-                            ><span class="js-required-to-trade-lots-new"></span>
+                            ><span class="">10.00</span>
                             lots</span
                           >
                         </div>
@@ -823,30 +819,24 @@
                             value="standard-30"
                           />
                           <div
-                            class="promoico promoico_radio"
+                            class="promoico promoicoradio"
                           ></div>
                           <div class="promotext">30%</div>
                         </div>
                       </label>
                       <div class="promo-bonuses-counting">
                         <div
-                          class="promo-bonuses-counting-text"
+                          class="promo-bonuses-counting-text" style="display: none;"
                         >
                           To see the bonus amount, specify your deposit amount
                           above.
                         </div>
                         <div
                           class="promo-bonuses-counting-text"
-                          data-bonus-amount="30"
-                          data-bonus-reuired-volume="50"
                         >
                           Requires you to trade
-                          <span class="promo-bonuses-counting-data old"
-                            ><span class=""></span>
-                            lots</span
-                          >
                           <span class="promo-bonuses-counting-data new"
-                            ><span class=""></span>
+                            ><span class="">30.00</span>
                             lots</span
                           >
                         </div>
@@ -864,38 +854,42 @@
                             value="standard-50"
                           />
                           <div
-                            class="promoico promoico_radio"
+                            class="promoico promoicoradio"
                           ></div>
                           <div class="promotext">50%</div>
                         </div>
                       </label>
                       <div class="promo-bonuses-counting">
                         <div
-                          class="promo-bonuses-counting-text"
+                          class="promo-bonuses-counting-text" style="display: none;"
                         >
                           To see the bonus amount, specify your deposit amount
                           above.
                         </div>
                         <div
                           class="promo-bonuses-counting-text"
-                          data-bonus-amount="50"
-                          data-bonus-reuired-volume="50"
                         >
                           Requires you to trade
-                          <span class="promo-bonuses-counting-data old"
-                            ><span class=""></span>
-                            lots</span
-                          >
                           <span class="promo-bonuses-counting-data new"
-                            ><span class=""></span>
+                            ><span class="">50.00</span>
                             lots</span
                           >
                         </div>
                       </div>
                     </li>
                   </ul>
+                  </mat-expansion-panel>
+                  </mat-accordion>
                 </div>
               </section>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="d-flex justify-content-end align-items-center base-btn">
+                    <a href="#" class="skip-link">Skip</a>
+                    <button class="btn btn-blue">Continue</button>
+                  </div>
+                </div>
+              </div>
             </form>
           </div>
         </div>
