@@ -53,10 +53,12 @@
                                         class="error-msg">Email is mandatory field</div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" id="psw" class="form-control input-field"
-                                        formControlName="password">
+                                    <input [type]="showPassword ? 'text' : 'password'" id="psw"
+                                        class="form-control input-field" formControlName="password">
                                     <label for="psw" class="orange-txt">Password</label>
-                                    <div class="input-icon">
+                                    <div class="input-icon" mat-icon-button matSuffix
+                                        (click)="showPassword = !showPassword" [attr.aria-label]="'Hide password'"
+                                        [attr.aria-pressed]="showPassword">
                                         <div class="eye-icon"></div>
                                     </div>
                                     <div *ngIf="(isValidForm || regForm.controls['password'].touched) && regForm.controls['password'].errors"

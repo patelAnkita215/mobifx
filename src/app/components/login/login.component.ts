@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isValidForm: boolean = false;
   showSpinner: boolean = false;
-
+  showPassword = false;
+  fieldTextType: boolean;
   constructor(
     public _formBuilder: FormBuilder,
     public _authService: ApiService,
@@ -32,8 +33,10 @@ export class LoginComponent implements OnInit {
     this.sharedservice.sidebar = false;
     this.sharedservice.isHeader = true;
   }
-
-  ngOnInit(): void {   
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
+  ngOnInit(): void {
     // this.init();
   }
 

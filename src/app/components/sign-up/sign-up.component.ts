@@ -15,6 +15,7 @@ export class SignUpComponent implements OnInit {
   regForm: FormGroup;
   showSpinner: boolean = false;
   isValidForm: boolean = false;
+  showPassword = false;
   // private toastr: CommonToasterService
   constructor(
     public _formBuilder: FormBuilder,

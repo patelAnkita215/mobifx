@@ -7,4 +7,5 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedService {
     sidebar: boolean = false;
     isHeader: boolean = true;
+    isVefiHeader: boolean = true;
 }

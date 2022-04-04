@@ -40,7 +40,7 @@ const routes: Routes = [
   { path: 'monitoring', component: MonitoringComponent, canActivate: [AuthGuard] },
   { path: 'open-real-account', component: OpenRealAccountComponent, canActivate: [AuthGuard] },
   { path: 'open-demo-account', component: OpenDemoAccountComponent, canActivate: [AuthGuard] },
-  { path: 'email-verification', component: EmailVerifyComponent, canActivate: [AuthGuard] },
+  { path: 'email-verification', component: EmailVerifyComponent },
   { path: 'verification-details', component: VerificationDetailsComponent },
 ];
 
