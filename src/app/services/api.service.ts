@@ -23,11 +23,13 @@ export class ApiService {
     signup(user: any): Observable<any> {
         return this.apiService.post(Endpoints.apiendpoint.auth.signup, user);
     }
-
     login(user: any): Observable<any> {
         return this.apiService.post(Endpoints.apiendpoint.auth.login, user);
     }
     verifyEmail(token: any): Observable<any> {
         return this.apiService.get(Endpoints.apiendpoint.auth.verifyEmail + token);
+    }
+    userInfo(data: any): Observable<any> {
+        return this.apiService.post(Endpoints.apiendpoint.auth.userInformation, data);
     }
 }

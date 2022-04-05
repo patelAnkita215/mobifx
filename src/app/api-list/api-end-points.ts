@@ -24,6 +24,9 @@ export const Endpoints = {
             },
             get verifyEmail() {
                 return `${apiurl}/auth/verification/`;
+            },
+            get userInformation() {
+                return `${apiurl}/auth/user-information`;
             }
         }
     }

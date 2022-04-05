@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   showSpinner: boolean = false;
   showPassword = false;
   fieldTextType: boolean;
+
   constructor(
     public _formBuilder: FormBuilder,
     public _authService: ApiService,

@@ -19,12 +19,5 @@
     {
       "path": "./tsconfig.server.json"
     }
-  ],
-  "compilerOptions": {
-    "paths": {
-      "@angular/*": [
-        "./node_modules/@angular/*"
-      ]
-    }
-  }
+]
 }
