@@ -1320,7 +1320,13 @@ h6 {
   transition: all 0.2s ease-in-out;
   display: flex;
 }
-
+.mat-expansion-panel .mat-expansion-panel-header.cdk-keyboard-focused:not([aria-disabled=true]), .mat-expansion-panel .mat-expansion-panel-header.cdk-program-focused:not([aria-disabled=true]), .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {background: transparent !important;}
+input:-internal-autofill-selected {
+  appearance: menulist-button;
+  background-image: none !important;
+  background-color: -internal-light-dark(rgb(232, 240, 254), rgba(70, 90, 126, 0.4)) !important;
+  color: -internal-light-dark(black, white) !important;
+}
 .error-msg {
   margin: 0 0 -20px 0;
   font-size: 12px;
