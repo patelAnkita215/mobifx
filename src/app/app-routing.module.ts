@@ -41,6 +41,7 @@ const routes: Routes = [
   { path: 'open-real-account', component: OpenRealAccountComponent, canActivate: [AuthGuard] },
   { path: 'open-demo-account', component: OpenDemoAccountComponent, canActivate: [AuthGuard] },
   { path: 'email-verification', component: EmailVerifyComponent },
+  { path: 'verification-details/:token', component: VerificationDetailsComponent },
   { path: 'verification-details', component: VerificationDetailsComponent },
 ];
 

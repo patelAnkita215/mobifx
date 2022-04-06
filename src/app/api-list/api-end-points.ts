@@ -14,8 +14,8 @@ export const Endpoints = {
     //     //     return domain == 'nfpc' ? environment.baseApiUrl : environment.baseApiUrl;
     //     // },
     // },
-    apiendpoint: {
-        auth: {
+    ApiEndpoint: {
+        Auth: {
             get signup() {
                 return `${apiurl}/auth/signup`;
             },
@@ -26,8 +26,27 @@ export const Endpoints = {
                 return `${apiurl}/auth/verification/`;
             },
             get userInformation() {
-                return `${apiurl}/auth/user-information`;
+                return `${apiurl}/user-information`;
+            },
+            get countries() {
+                return `${"https://countries.petethompson.net/data/countries.json"}`;
             }
+        },
+        Plans: {
+            get plans() {
+                return `${apiurl}/plan/list`;
+            },
+            get addPlans() {
+                return `${apiurl}/plan/add`;
+            },
+        },
+        Leverage: {
+            get leverage() {
+                return `${apiurl}/leverage/list`;
+            },
+            get addLeverage() {
+                return `${apiurl}/leverage/add`;
+            },
         }
     }
 }

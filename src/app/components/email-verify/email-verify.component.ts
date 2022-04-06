@@ -30,12 +30,12 @@ export class EmailVerifyComponent implements OnInit {
   }
 
   emailVerify() {
-    this._authService.verifyEmail(this.token).subscribe(res => {
-      console.log('res', res);
-    },
-      (_error: any) => {
-        console.log('error', _error);
-      });
+    //   this._authService.verifyEmail(this.token).subscribe(res => {
+    //     console.log('res', res);
+    //   },
+    //     (_error: any) => {
+    //       console.log('error', _error);
+    //     });
   }
 
 }

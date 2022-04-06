@@ -73,11 +73,13 @@
                   <mat-label>Country</mat-label>
                 </div>
                 <div class="col-md-9">
-                  <mat-form-field appearance="outline">
+                  <!-- <mat-form-field appearance="outline">
                     <mat-select>
                       <mat-option value="option">Option</mat-option>
                     </mat-select>
-                  </mat-form-field>
+                  </mat-form-field> -->
+                  <country-picker [flag]="false" [setValue]="'cca3'" [setName]="'name.common'"
+                    [classes]="['form-control']" (click)="getCountry($event)"></country-picker>
                 </div>
               </div>
               <div class="form-group row align-items-center">
@@ -111,9 +113,15 @@
                   <mat-label>Phone number</mat-label>
                 </div>
                 <div class="col-md-9">
-                  <mat-form-field appearance="outline">
-                    <input type="number" matInput placeholder="" formControlName="phone_number" />
-                  </mat-form-field>
+                  <!-- <mat-form-field appearance="outline"> -->
+                  <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+                    [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
+                    [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                    [selectFirstCountry]="true" [selectedCountryISO]="CountryISO.India" [maxLength]="10"
+                    [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                    [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone_number">
+                  </ngx-intl-tel-input>
+                  <!-- </mat-form-field> -->
                   <div
                     *ngIf="(isValidForm || accountInformaton.controls['phone_number'].touched) && accountInformaton.controls['phone_number'].errors"
                     class="error-msg">Please enter a valid phone number</div>
@@ -126,18 +134,47 @@
                 <div class="col-md-9">
                   <div class="form-width">
                     <mat-form-field appearance="outline" style="width: 22%">
-                      <mat-select>
-                        <mat-option value="option">Date</mat-option>
+                      <mat-select [(value)]="selectedDay" (selectionChange)="onSelectDay($event)">
+                        <mat-option value="0" selected>Day</mat-option>
+                        <mat-option value="1">1</mat-option>
+                        <mat-option value="2">2</mat-option>
+                        <mat-option value="3">3</mat-option>
+                        <mat-option value="4">4</mat-option>
+                        <mat-option value="5">5</mat-option>
+                        <mat-option value="6">6</mat-option>
+                        <mat-option value="7">7</mat-option>
+                        <mat-option value="8">8</mat-option>
+                        <mat-option value="9">9</mat-option>
+                        <mat-option value="10">10</mat-option>
+                        <mat-option value="11">11</mat-option>
+                        <mat-option value="12">12</mat-option>
                       </mat-select>
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="width: 42%">
-                      <mat-select>
-                        <mat-option value="option">Month</mat-option>
+                      <mat-select [(value)]="selectedMonth" (selectionChange)="onSelectMonth($event)">
+                        <mat-option value="0">Month</mat-option>
+                        <mat-option value="1">January</mat-option>
+                        <mat-option value="2">February</mat-option>
+                        <mat-option value="3">March</mat-option>
+                        <mat-option value="4">April</mat-option>
+                        <mat-option value="5">May</mat-option>
+                        <mat-option value="6">June</mat-option>
+                        <mat-option value="7">July</mat-option>
+                        <mat-option value="8">August</mat-option>
+                        <mat-option value="9">September</mat-option>
+                        <mat-option value="10">Octomber</mat-option>
+                        <mat-option value="11">November</mat-option>
+                        <mat-option value="12">December</mat-option>
                       </mat-select>
                     </mat-form-field>
                     <mat-form-field appearance="outline" style="width: 32%">
-                      <mat-select>
-                        <mat-option value="option">Year</mat-option>
+                      <mat-select [(value)]="selectedYear" (selectionChange)="onSelectYear($event)">
+                        <mat-option value="0">Year</mat-option>
+                        <mat-option value="1">1980</mat-option>
+                        <mat-option value="2">1977</mat-option>
+                        <mat-option value="3">1998</mat-option>
+                        <mat-option value="4">1999</mat-option>
+                        <mat-option value="5">1985</mat-option>
                       </mat-select>
                     </mat-form-field>
                     <div
@@ -185,7 +222,7 @@
                 <div class="col-md-5 px-0">
                   <mat-card class="account-type selected">
                     <div class="d-flex align-items-center justify-content-between">
-                      <h3 class="card-title">OctaFX MT5</h3>
+                      <h3 class="card-title">{{planData?.name}} OctaFX MT5</h3>
                       <div class="mt5-img">
                         <img src="../../../assets/images/mt5.svg" class="img-fluid" />
                       </div>
@@ -245,7 +282,7 @@
                 <div class="col-md-5 px-0">
                   <mat-card class="account-type">
                     <div class="d-flex align-items-center justify-content-between">
-                      <h3 class="card-title">OctaFX MT5</h3>
+                      <h3 class="card-title">OctaFX MT4</h3>
                       <div class="mt5-img">
                         <img src="../../../assets/images/mt5.svg" class="img-fluid" />
                       </div>
@@ -294,7 +331,7 @@
                         <div class="text-wrap">
                           <div class="text">Instruments</div>
                         </div>
-                        <p class="descr">80 instruments</p>
+                        <p class="descr">74 instruments</p>
                       </li>
                     </ul>
                     <div class="d-flex align-items-center justify-content-center">
@@ -314,11 +351,13 @@
                   <div class="cntrl">
                     <div class="switcher">
                       <div class="switcher-item">
-                        <input id="server-0" name="server" type="radio" class="switcher-radio" value="real" checked />
+                        <input id="server-0" name="server" type="radio" class="switcher-radio" value="real" checked
+                          (input)="onSelectChange($event.target.value)" />
                         <label for="server-0" class="switcher-label">Real</label>
                       </div>
-                      <div class="switcher-item">
-                        <input id="server-1" name="server" type="radio" class="switcher-radio" value="demo" />
+                      <div *ngIf="isHideAccType" class="switcher-item">
+                        <input id="server-1" name="server" type="radio" class="switcher-radio" value="demo"
+                          (input)="onSelectChange($event.target.value)" />
                         <label for="server-1" class="switcher-label">Demo</label>
                       </div>
                     </div>
@@ -334,12 +373,13 @@
                   <div class="cntrl">
                     <div class="switcher">
                       <div class="switcher-item">
-                        <input id="currency-0" name="currency" type="radio" class="switcher-radio" value="USD"
-                          checked />
+                        <input id="currency-0" name="currency" type="radio" class="switcher-radio" value="USD" checked
+                          (input)="onSelectChange($event.target.value)" />
                         <label for="currency-0" class="switcher-label">USD</label>
                       </div>
-                      <div class="switcher-item">
-                        <input id="currency-1" name="currency" type="radio" class="switcher-radio" value="EUR" />
+                      <div *ngIf="isHideCurrency" class="switcher-item">
+                        <input id="currency-1" name="currency" type="radio" class="switcher-radio" value="EUR"
+                          (input)="onSelectChange($event.target.value)" />
                         <label for="currency-1" class="switcher-label">EUR</label>
                       </div>
                     </div>
@@ -369,15 +409,31 @@
                   </h4>
                   <div class="cntrl">
                     <div class="switcher">
-                      <div class="switcher-item">
+                      <div *ngIf="isHideFixedRate" class="switcher-item">
                         <input id="fixedRate-0" name="fixedRate" type="radio" class="switcher-radio" value="true"
-                          checked />
+                          (input)="onSelectChange($event.target.value)" />
                         <label for="fixedRate-0" class="switcher-label">On</label>
                       </div>
                       <div class="switcher-item">
-                        <input id="fixedRate-1" name="fixedRate" type="radio" class="switcher-radio" value="false" />
+                        <input id="fixedRate-1" name="fixedRate" type="radio" class="switcher-radio" value="false"
+                          checked (input)="onSelectChange($event.target.value)" />
                         <label for="fixedRate-1" class="switcher-label">Off</label>
                       </div>
+                    </div>
+                  </div>
+                </li>
+                <li *ngIf="isShowBalance" class="item">
+                  <h4 class="title">
+                    Balance
+                    <div class="tooltip__ico-question">
+                      <img src="../../../assets/images/icon/question-mark.png" class="img-fluid" />
+                    </div>
+                  </h4>
+                  <div class="leverage-select">
+                    <div class="switcher-item">
+                      <mat-form-field appearance="outline">
+                        <input type="text" matInput placeholder="" value="$ 5000" />
+                      </mat-form-field>
                     </div>
                   </div>
                 </li>

@@ -21,15 +21,30 @@ export class ApiService {
     ) { }
 
     signup(user: any): Observable<any> {
-        return this.apiService.post(Endpoints.apiendpoint.auth.signup, user);
+        return this.apiService.post(Endpoints.ApiEndpoint.Auth.signup, user);
     }
     login(user: any): Observable<any> {
-        return this.apiService.post(Endpoints.apiendpoint.auth.login, user);
+        return this.apiService.post(Endpoints.ApiEndpoint.Auth.login, user);
     }
     verifyEmail(token: any): Observable<any> {
-        return this.apiService.get(Endpoints.apiendpoint.auth.verifyEmail + token);
+        return this.apiService.get(Endpoints.ApiEndpoint.Auth.verifyEmail + token);
     }
     userInfo(data: any): Observable<any> {
-        return this.apiService.post(Endpoints.apiendpoint.auth.userInformation, data);
+        return this.apiService.post(Endpoints.ApiEndpoint.Auth.userInformation, data);
+    }
+    getCountry() {
+        return this.apiService.get(Endpoints.ApiEndpoint.Auth.countries);
+    }
+    getPlan() {
+        return this.apiService.get(Endpoints.ApiEndpoint.Plans.plans);
+    }
+    addPlan() {
+        return this.apiService.get(Endpoints.ApiEndpoint.Plans.addPlans);
+    }
+    getLeverage() {
+        return this.apiService.get(Endpoints.ApiEndpoint.Leverage.leverage);
+    }
+    addLeverage() {
+        return this.apiService.get(Endpoints.ApiEndpoint.Leverage.addLeverage);
     }
 }

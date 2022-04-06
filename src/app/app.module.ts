@@ -42,7 +42,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 import { VerificationDetailsComponent } from './components/verification-details/verification-details.component'
 import { AuthGuard } from '../app/services/auth-guard.services';
-import {MatExpansionModule} from '@angular/material/expansion';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { CountryPickerModule, CountryPickerService } from 'ngx-country-picker';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 
 @NgModule({
   declarations: [
@@ -87,13 +89,16 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule,
+    CountryPickerModule.forRoot(),
+    NgxIntlTelInputModule
   ],
   providers: [
     ApiService,
     AuthInterceptor,
     CommonSpinnerService,
     AuthGuard,
+    CountryPickerService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
