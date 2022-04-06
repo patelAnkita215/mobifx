@@ -35,6 +35,9 @@ export class ApiService {
     getCountry() {
         return this.apiService.get(Endpoints.ApiEndpoint.Auth.countries);
     }
+    accountInfo(data: any): Observable<any> {
+        return this.apiService.post(Endpoints.ApiEndpoint.Auth.accountInformation, data);
+    }
     getPlan() {
         return this.apiService.get(Endpoints.ApiEndpoint.Plans.plans);
     }

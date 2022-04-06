@@ -177,10 +177,10 @@
                         <mat-option value="5">1985</mat-option>
                       </mat-select>
                     </mat-form-field>
-                    <div
-                      *ngIf="(isValidForm || accountInformaton.controls['phone_number'].touched) && accountInformaton.controls['phone_number'].errors"
-                      class="error-msg">Please enter a valid date</div>
                   </div>
+                  <div
+                    *ngIf="(isValidForm || accountInformaton.controls['phone_number'].touched) && accountInformaton.controls['phone_number'].errors"
+                    class="error-msg">Please enter a valid date</div>
                 </div>
               </div>
               <div class="form-group row align-items-center">
@@ -219,12 +219,10 @@
             </div>
             <form>
               <div class="simple-card row">
-                <div class="swiper-container swiper swiper-container-horizontal">
-                  <div class="swiper-wrapper">
-                <div class="acc-type-slide swiper-slide swiper-slide-active">
+                <div *ngFor="let item of planData" class="col-md-5 px-0">
                   <mat-card class="account-type selected">
                     <div class="d-flex align-items-center justify-content-between">
-                      <h3 class="card-title">{{planData?.name}} MobiFX MT5</h3>
+                      <h3 class="card-title">{{item?.name}}</h3>
                       <div class="mt5-img">
                         <img src="../../../assets/images/mt5.svg" class="img-fluid" />
                       </div>
@@ -234,7 +232,7 @@
                       <li class="item">
                         <div class="text-wrap">
                           <div class="text">Spread from</div>
-                          <span class="value">0.6 pips</span>
+                          <span class="value">{{item?.plan_feature[0]?.feature_name}}</span>
                         </div>
                         <p class="descr">Floating spread, markup</p>
                       </li>
@@ -281,10 +279,10 @@
                     </div>
                   </mat-card>
                 </div>
-                <div class="swiper-slide acc-type-slide">
+                <div class="col-md-5 px-0">
                   <mat-card class="account-type">
                     <div class="d-flex align-items-center justify-content-between">
-                      <h3 class="card-title">MobiFX MT4</h3>
+                      <h3 class="card-title">OctaFX MT4</h3>
                       <div class="mt5-img">
                         <img src="../../../assets/images/mt5.svg" class="img-fluid" />
                       </div>
@@ -342,9 +340,6 @@
                   </mat-card>
                 </div>
               </div>
-              <div class="swiper-pagination"></div>
-              </div>
-              </div>
               <ul class="acc-type-settings">
                 <li class="item">
                   <h4 class="title">
@@ -356,12 +351,12 @@
                   <div class="cntrl">
                     <div class="switcher">
                       <div class="switcher-item">
-                        <input id="server-0" name="server" type="radio" class="switcher-radio" value="real" checked
+                        <input id="server-0" name="server" type="radio" class="switcher-radio" value="1" checked
                           (input)="onSelectChange($event.target.value)" />
                         <label for="server-0" class="switcher-label">Real</label>
                       </div>
                       <div *ngIf="isHideAccType" class="switcher-item">
-                        <input id="server-1" name="server" type="radio" class="switcher-radio" value="demo"
+                        <input id="server-1" name="server" type="radio" class="switcher-radio" value="2"
                           (input)="onSelectChange($event.target.value)" />
                         <label for="server-1" class="switcher-label">Demo</label>
                       </div>
@@ -379,12 +374,12 @@
                     <div class="switcher">
                       <div class="switcher-item">
                         <input id="currency-0" name="currency" type="radio" class="switcher-radio" value="USD" checked
-                          (input)="onSelectChange($event.target.value)" />
+                          (input)="onSelectChange1($event.target.value)" />
                         <label for="currency-0" class="switcher-label">USD</label>
                       </div>
                       <div *ngIf="isHideCurrency" class="switcher-item">
                         <input id="currency-1" name="currency" type="radio" class="switcher-radio" value="EUR"
-                          (input)="onSelectChange($event.target.value)" />
+                          (input)="onSelectChange1($event.target.value)" />
                         <label for="currency-1" class="switcher-label">EUR</label>
                       </div>
                     </div>
@@ -399,8 +394,10 @@
                   </h4>
                   <div class="leverage-select">
                     <mat-form-field appearance="outline">
-                      <mat-select>
-                        <mat-option value="option">1:500</mat-option>
+                      <mat-select [(value)]="Leverage" (selectionChange)="onSelectLeverage($event)">
+                        <mat-option value="1">1:500</mat-option>
+                        <!-- <mat-option value="2">1:200</mat-option>
+                        <mat-option value="3">1:200</mat-option> -->
                       </mat-select>
                     </mat-form-field>
                   </div>
@@ -415,13 +412,13 @@
                   <div class="cntrl">
                     <div class="switcher">
                       <div *ngIf="isHideFixedRate" class="switcher-item">
-                        <input id="fixedRate-0" name="fixedRate" type="radio" class="switcher-radio" value="true"
-                          (input)="onSelectChange($event.target.value)" />
+                        <input id="fixedRate-0" name="fixedRate" type="radio" class="switcher-radio" value="1"
+                          (input)="onSelectChange2($event.target.value)" />
                         <label for="fixedRate-0" class="switcher-label">On</label>
                       </div>
                       <div class="switcher-item">
-                        <input id="fixedRate-1" name="fixedRate" type="radio" class="switcher-radio" value="false"
-                          checked (input)="onSelectChange($event.target.value)" />
+                        <input id="fixedRate-1" name="fixedRate" type="radio" class="switcher-radio" value="2" checked
+                          (input)="onSelectChange2($event.target.value)" />
                         <label for="fixedRate-1" class="switcher-label">Off</label>
                       </div>
                     </div>
@@ -436,8 +433,10 @@
                   </h4>
                   <div class="leverage-select">
                     <div class="switcher-item">
+                      <label for="fixedRate-1" class="switcher-label">{{currencySign}}</label>
                       <mat-form-field appearance="outline">
-                        <input type="text" matInput placeholder="" value="$ 5000" />
+                        <input type="text" matInput placeholder="" [(ngModel)]="balanceValue"
+                          [ngModelOptions]="{standalone: true}" />
                       </mat-form-field>
                     </div>
                   </div>
@@ -446,7 +445,7 @@
               <div class="row align-items-center">
                 <div class="col-sm-12">
                   <div class="form-button">
-                    <button class="btn btn-blue" type="submit">
+                    <button class="btn btn-blue" type="submit" (click)="accountInformation()">
                       Make a deposit into account
                     </button>
                   </div>
@@ -469,20 +468,20 @@
                   <div class="info-block">
                     <div class="descr">
                       <div class="title">Account number</div>
-                      <div class="val">19240421</div>
+                      <div class="val">{{accInfoData?.account_id}}</div>
                     </div>
                     <div class="descr">
                       <div class="title">Server</div>
-                      <div class="val">MobiFX-Real7</div>
+                      <div class="val">OctaFX-Real7</div>
                     </div>
                     <div class="descr">
                       <div class="title">Account type</div>
-                      <div class="val">MobiFX MT4</div>
+                      <div class="val">{{accInfoData?.plan?.name}}</div>
                     </div>
 
                     <div class="descr">
                       <div class="title">Currency</div>
-                      <div class="val">USD</div>
+                      <div class="val">{{accInfoData?.currency}}</div>
                     </div>
 
                     <div class="descr">
@@ -759,5 +758,4 @@
           </div>
         </mat-step>
       </mat-horizontal-stepper>
-      
-</main>> -->
+    </main> -->
