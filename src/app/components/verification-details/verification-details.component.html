@@ -79,7 +79,7 @@
                     </mat-select>
                   </mat-form-field> -->
                   <country-picker [flag]="false" [setValue]="'cca3'" [setName]="'name.common'"
-                    [classes]="['form-control']" (click)="getCountry($event)"></country-picker>
+                    [classes]="['form-control']" (click)="getCountry($event)" style="width: 360px;"></country-picker>
                 </div>
               </div>
               <div class="form-group row align-items-center">
@@ -114,12 +114,12 @@
                 </div>
                 <div class="col-md-9">
                   <!-- <mat-form-field appearance="outline"> -->
-                  <ngx-intl-tel-input [cssClass]="'custom'" [preferredCountries]="preferredCountries"
+                  <ngx-intl-tel-input [cssClass]="'custom form-control'" [preferredCountries]="preferredCountries"
                     [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [searchCountryFlag]="true"
                     [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
                     [selectFirstCountry]="true" [selectedCountryISO]="CountryISO.India" [maxLength]="10"
                     [phoneValidation]="true" [separateDialCode]="separateDialCode"
-                    [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone_number">
+                    [numberFormat]="PhoneNumberFormat.National" name="phone" formControlName="phone_number" style="width: 360px;">
                   </ngx-intl-tel-input>
                   <!-- </mat-form-field> -->
                   <div
@@ -432,8 +432,8 @@
                     </div>
                   </h4>
                   <div class="leverage-select">
-                    <div class="switcher-item">
-                      <label for="fixedRate-1" class="switcher-label">{{currencySign}}</label>
+                    <div class="switcher-item balance-div">
+                      <label for="fixedRate-1" class="switcher-label label-position">{{currencySign}}</label>
                       <mat-form-field appearance="outline">
                         <input type="text" matInput placeholder="" [(ngModel)]="balanceValue"
                           [ngModelOptions]="{standalone: true}" />

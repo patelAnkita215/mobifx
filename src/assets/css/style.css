@@ -1116,7 +1116,7 @@ input:-internal-autofill-selected {
   color: -internal-light-dark(black, white) !important;
 }
 .error-msg {
-  margin: 0 0 -20px 0;
+  margin: 4px 0 4px 0;
   font-size: 12px;
   color: red;
 }
@@ -1126,3 +1126,6 @@ input:-internal-autofill-selected {
 .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:hover:not([aria-disabled=true]) {
   background: transparent !important;
 }
+
+.balance-div .mat-form-field-appearance-outline .mat-form-field-flex {padding-left: 22px;}
+.verification .form-control {width: 360px;}
