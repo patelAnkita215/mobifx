@@ -44,8 +44,8 @@
 										(click)="showPassword = !showPassword" [attr.aria-label]="'Hide password'"
 										[attr.aria-pressed]="showPassword">
 										<i class="fa" [ngClass]="{
-											  'fa-eye-slash': !fieldTextType,
-											  'eye-icon': fieldTextType
+											  'fa-eye-slash eye-icon': !fieldTextType,
+											  'show-psw': fieldTextType
 											}" (click)="toggleFieldTextType()"></i>
 										<!-- <i class="fa-solid fa-eye-slash"></i> -->
 									</div>

@@ -169,6 +169,12 @@
     margin: 40px 0px;
     justify-content: flex-end;
 
+    .acc-type-slide {
+        height: auto;
+        padding-top: 15px;
+        width: 192px;
+    }
+
     .account-type {
         border: 1px solid #e5e5e5;
         transform: scale(.8);
@@ -669,6 +675,8 @@
                     padding-bottom: 16px;
                     font-size: 16px;
                 }
+
+                &:hover{color: #c99c3b;}
             
             }
             .btn-blue {font-size: 16px;text-transform: uppercase;}

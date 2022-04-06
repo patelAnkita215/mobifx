@@ -219,10 +219,12 @@
             </div>
             <form>
               <div class="simple-card row">
-                <div class="col-md-5 px-0">
+                <div class="swiper-container swiper swiper-container-horizontal">
+                  <div class="swiper-wrapper">
+                <div class="acc-type-slide swiper-slide swiper-slide-active">
                   <mat-card class="account-type selected">
                     <div class="d-flex align-items-center justify-content-between">
-                      <h3 class="card-title">{{planData?.name}} OctaFX MT5</h3>
+                      <h3 class="card-title">{{planData?.name}} MobiFX MT5</h3>
                       <div class="mt5-img">
                         <img src="../../../assets/images/mt5.svg" class="img-fluid" />
                       </div>
@@ -279,10 +281,10 @@
                     </div>
                   </mat-card>
                 </div>
-                <div class="col-md-5 px-0">
+                <div class="swiper-slide acc-type-slide">
                   <mat-card class="account-type">
                     <div class="d-flex align-items-center justify-content-between">
-                      <h3 class="card-title">OctaFX MT4</h3>
+                      <h3 class="card-title">MobiFX MT4</h3>
                       <div class="mt5-img">
                         <img src="../../../assets/images/mt5.svg" class="img-fluid" />
                       </div>
@@ -339,6 +341,9 @@
                     </div>
                   </mat-card>
                 </div>
+              </div>
+              <div class="swiper-pagination"></div>
+              </div>
               </div>
               <ul class="acc-type-settings">
                 <li class="item">
@@ -468,11 +473,11 @@
                     </div>
                     <div class="descr">
                       <div class="title">Server</div>
-                      <div class="val">OctaFX-Real7</div>
+                      <div class="val">MobiFX-Real7</div>
                     </div>
                     <div class="descr">
                       <div class="title">Account type</div>
-                      <div class="val">OctaFX MT4</div>
+                      <div class="val">MobiFX MT4</div>
                     </div>
 
                     <div class="descr">
