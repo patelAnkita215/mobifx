@@ -30,7 +30,10 @@ export const Endpoints = {
             },
             get countries() {
                 return `${"https://countries.petethompson.net/data/countries.json"}`;
-            }
+            },
+            get accountInformation() {
+                return `${apiurl}/account-information`;
+            },
         },
         Plans: {
             get plans() {
