@@ -95,7 +95,9 @@ export class VerificationDetailsComponent implements OnInit {
     this.apiService.verifyEmail(this.token).subscribe(res => {
       console.log('res', res);
       if (res.status == true) {
-        localStorage.setItem("token", res.data?.accessToken);
+        this.sharedService.token = res.data?.accessToken;
+        // console.log('this.sharedService.token', this.sharedService.token);
+
         this.userInfo = res?.data?.user_info;
         this.router.navigate(['/verification-details']);
       }
