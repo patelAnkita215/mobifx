@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'sidebar', component: SidebarComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'deposit-history', component: DepositHistoryComponent, canActivate: [AuthGuard] },
   { path: 'transfer-history', component: TransferHistoryComponent, canActivate: [AuthGuard] },
   { path: 'withdraw-history', component: WithdrawHistoryComponent, canActivate: [AuthGuard] },

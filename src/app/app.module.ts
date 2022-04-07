@@ -45,6 +45,7 @@ import { AuthGuard } from '../app/services/auth-guard.services';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { CountryPickerModule, CountryPickerService } from 'ngx-country-picker';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
     SidebarComponent,
     HomeComponent,
     SignUpComponent,
+    DashboardComponent,
     AccountListComponent,
     ManageBounsesComponent,
     MonitoringComponent,
