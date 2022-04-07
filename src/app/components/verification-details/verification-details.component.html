@@ -13,18 +13,23 @@
         </div>
         <div>
           <ul class="reg-steps">
-            <li class="item success">
+            <!-- success -->
+            <li class="item" [ngClass]="{'current': isStep}">
               <div class="number">
-                <!-- <span>1</span> -->
-                <img src="../../../assets/images/icon-check-white.svg" alt="Checked" width="20" height="20" />
+                <span *ngIf="isStep">1</span>
+                <span *ngIf="!isStep"><img src="../../../assets/images/icon-check-white.svg" alt="Checked" width="20"
+                    height="20" /></span>
               </div>
               <div class="name">
                 <span class="title">Account</span>
               </div>
             </li>
-            <li class="item current">
+            <!-- current -->
+            <li class="item" [ngClass]="{'current': !isStep1}">
               <div class="number">
-                <span>2</span>
+                <span *ngIf="isStep1">2</span>
+                <span *ngIf="!isStep1"><img src="../../../assets/images/icon-check-white.svg" alt="Checked" width="20"
+                    height="20" /></span>
               </div>
               <div class="name">
                 <span class="title">Deposit</span>
@@ -59,7 +64,7 @@
     <div class="container">
       <!-- Account details -->
       <div>
-        <div class="row align-items-center main-box justify-content-center w-100 mx-0">
+        <div *ngIf="isAccount1" class="row align-items-center main-box justify-content-center w-100 mx-0">
           <div class="col-xl-12 col-md-12 col-lg-12 px-0">
             <div class="d-flex align-items-center mb-1">
               <h1 class="heading">Provide your details</h1>
@@ -67,7 +72,7 @@
                 <img src="../../../assets/images/icon/question-mark.png" class="img-fluid" />
               </div>
             </div>
-            <form [formGroup]="accountInformaton">
+            <form [formGroup]="accountInformation">
               <div class="form-group row align-items-center">
                 <div class="col-md-3">
                   <mat-label>Country</mat-label>
@@ -91,7 +96,7 @@
                     <input type="text" matInput placeholder="" formControlName="city" />
                   </mat-form-field>
                   <div
-                    *ngIf="(isValidForm || accountInformaton.controls['city'].touched) && accountInformaton.controls['city'].errors"
+                    *ngIf="(isValidForm || accountInformation.controls['city'].touched) && accountInformation.controls['city'].errors"
                     class="error-msg">Please enter your city</div>
                 </div>
               </div>
@@ -104,7 +109,7 @@
                     <input type="text" matInput placeholder="" formControlName="street_address" />
                   </mat-form-field>
                   <div
-                    *ngIf="(isValidForm || accountInformaton.controls['street_address'].touched) && accountInformaton.controls['street_address'].errors"
+                    *ngIf="(isValidForm || accountInformation.controls['street_address'].touched) && accountInformation.controls['street_address'].errors"
                     class="error-msg">Please enter your address</div>
                 </div>
               </div>
@@ -124,7 +129,7 @@
                   </ngx-intl-tel-input>
                   <!-- </mat-form-field> -->
                   <div
-                    *ngIf="(isValidForm || accountInformaton.controls['phone_number'].touched) && accountInformaton.controls['phone_number'].errors"
+                    *ngIf="(isValidForm || accountInformation.controls['phone_number'].touched) && accountInformation.controls['phone_number'].errors"
                     class="error-msg">Please enter a valid phone number</div>
                 </div>
               </div>
@@ -180,7 +185,7 @@
                     </mat-form-field>
                   </div>
                   <div
-                    *ngIf="(isValidForm || accountInformaton.controls['phone_number'].touched) && accountInformaton.controls['phone_number'].errors"
+                    *ngIf="(isValidForm || accountInformation.controls['phone_number'].touched) && accountInformation.controls['phone_number'].errors"
                     class="error-msg">Please enter a valid date</div>
                 </div>
               </div>
@@ -189,9 +194,9 @@
                   <mat-label>Have you traded forex before?</mat-label>
                 </div>
                 <div class="col-md-9">
-                  <mat-radio-group aria-label="Select an option" (change)="radioChange($event)">
-                    <mat-radio-button value="Yes">Yes</mat-radio-button>
-                    <mat-radio-button value="No">No</mat-radio-button>
+                  <mat-radio-group aria-label="Select an option" (change)="haveYouTrade($event)">
+                    <mat-radio-button value="1">Yes</mat-radio-button>
+                    <mat-radio-button value="2">No</mat-radio-button>
                   </mat-radio-group>
                   <div *ngIf=" isValidTrade" class="error-msg">Please answer the question
                     above regarding your forex experience
@@ -210,7 +215,7 @@
         </div>
 
         <!-- choose account -->
-        <div class="row align-items-center main-box justify-content-center w-100 mx-0">
+        <div *ngIf="isAccount" class="row align-items-center main-box justify-content-center w-100 mx-0">
           <div class="col-xl-12 col-md-12 col-lg-12 px-0">
             <div class="d-flex align-items-center mb-1">
               <h1 class="heading">Choose account and parameters</h1>
@@ -446,7 +451,7 @@
               <div class="row align-items-center">
                 <div class="col-sm-12">
                   <div class="form-button">
-                    <button class="btn btn-blue" type="submit" (click)="accountInformation()">
+                    <button class="btn btn-blue" type="submit" (click)="accountInformationSubmit()">
                       Make a deposit into account
                     </button>
                   </div>
@@ -458,7 +463,7 @@
       </div>
 
       <!-- Deposit details -->
-      <div class="row align-items-center main-box justify-content-center w-100 mx-0">
+      <div *ngIf="isDeposit" class="row align-items-center main-box justify-content-center w-100 mx-0">
         <div class="col-xl-12 col-md-12 col-lg-12 px-0">
           <div class="deposit">
             <form class="form-wrapper-inner">
@@ -708,7 +713,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <div class="d-flex justify-content-end align-items-center base-btn">
-                    <a href="#" class="skip-link">Skip</a>
+                    <a href="#" class="skip-link" (click)="redirectToDashboard()">Skip</a>
                     <button class="btn btn-blue">Continue</button>
                   </div>
                 </div>

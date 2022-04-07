@@ -20,12 +20,17 @@ export class VerificationDetailsComponent implements OnInit {
 
   panelOpenState = false;
   token: string;
-  accountInformaton: FormGroup;
+  accountInformation: FormGroup;
   secondFormGroup: FormGroup;
   showSpinner: boolean = false;
   isValidForm: boolean = false;
-  trade: any;
+  trade = "0";
+  isStep: boolean = true;
+  isStep1: boolean = true;
   isValidTrade: boolean = false;
+  isAccount: boolean = false;
+  isAccount1: boolean = true;
+  isDeposit: boolean = false;
   public countries: ICountry[] = [];
   separateDialCode = true;
   SearchCountryField = SearchCountryField;
@@ -63,7 +68,7 @@ export class VerificationDetailsComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.accountInformaton = this._formBuilder.group({
+    this.accountInformation = this._formBuilder.group({
       city: ['', Validators.required],
       street_address: ['', Validators.required],
       phone_number: ['', Validators.required],
@@ -85,7 +90,7 @@ export class VerificationDetailsComponent implements OnInit {
     }
     this.getPlans();
     // this.apiService.getCountry().subscribe(res => {
-    //   console.log('res', res);
+    // //   console.log('res', res);
     // });
     this.countryPicker.getCountries().subscribe((countries: ICountry[]) => this.countries = countries);
   }
@@ -95,9 +100,11 @@ export class VerificationDetailsComponent implements OnInit {
     this.apiService.verifyEmail(this.token).subscribe(res => {
       console.log('res', res);
       if (res.status == true) {
-        this.sharedService.token = res.data?.accessToken;
-        // console.log('this.sharedService.token', this.sharedService.token);
-
+        // this.sharedService.token = res.data?.accessToken;
+        localStorage.setItem("token", res.data?.accessToken);
+        localStorage.setItem('firstname', res.data?.user_info?.firstname);
+        localStorage.setItem('lastname', res.data?.user_info?.lastname);
+        localStorage.setItem('email', res.data?.user_info?.email);
         this.userInfo = res?.data?.user_info;
         this.router.navigate(['/verification-details']);
       }
@@ -112,8 +119,6 @@ export class VerificationDetailsComponent implements OnInit {
       console.log('res', res);
       if (res) {
         this.planData = res?.data;
-        console.log('this.planData', this.planData);
-
       }
     },
       (error: any) => {
@@ -122,40 +127,55 @@ export class VerificationDetailsComponent implements OnInit {
   }
 
   userInformation() {
-    this.radioChange(event);
-    if (this.accountInformaton?.invalid) {
+    // this.haveYouTrade(event);   
+    if (this.trade == "1" || this.trade == "2") {
+      this.isAccount = true;
+    } else {
+      this.isAccount = false;
+    }
+
+    if (this.accountInformation?.invalid) {
       this.isValidForm = true;
       return;
     } else {
       const payload = {
-        // user_id: this.userInfo?.id,
-        user_id: "13",
+        user_id: this.userInfo?.id,
+        // user_id: "13",
         country_id: "1",
-        country_code: this.accountInformaton.controls.phone_number.value['dialCode'],
-        phone: this.accountInformaton.controls.phone_number.value['number'].replace(/\s/g, ""),
+        country_code: this.accountInformation.controls.phone_number.value['dialCode'],
+        phone: this.accountInformation.controls.phone_number.value['number'].replace(/\s/g, ""),
         // bod: this.year + "-" + this.month + "-" + this.day,
-        bod: "1990-11-08",
-        city: this.accountInformaton.controls.city.value,
-        street_address: this.accountInformaton.controls.street_address.value
+        bod: "1995-10-10",
+        city: this.accountInformation.controls.city.value,
+        street_address: this.accountInformation.controls.street_address.value
       };
-      console.log('this.accountInformaton', this.accountInformaton);
-      // this.showSpinner = true;
-      this.apiService.userInfo(JSON.stringify(payload)).subscribe(res => {
-        this.userInfoData = res?.data;
-        console.log('res', res);
-      },
-        (error: any) => {
-          console.log('error', error);
-          // this.showSpinner = false;
-        });
+      console.log('payload', payload);
+
+      console.log('this.accountInformation', this.accountInformation);
+      if (this.userInfo?.id) {
+        this.apiService.userInfo(JSON.stringify(payload)).subscribe(res => {
+          this.userInfoData = res?.data;
+          console.log('res', res);
+          this.accountInformation = null;
+        },
+          (error: any) => {
+            // console.log('error', error);
+            // this.showSpinner = false;
+          });
+      }
     }
   }
 
-  accountInformation() {
+  accountInformationSubmit() {
+    this.isStep = false;
+    this.isStep1 = false;
+    this.isAccount1 = false;
+    this.isAccount = false;
+    this.isDeposit = true;
     if (this.acc_type == "1") {
       const payload = {
-        // user_id: this.userInfo?.id,
-        user_id: "13",
+        user_id: this.userInfo?.id,
+        // user_id: "13",
         plan_id: "1",
         leverage_id: this.leverageValue,
         account_type: this.acc_type,
@@ -164,19 +184,20 @@ export class VerificationDetailsComponent implements OnInit {
         balance: ""
       }
       console.log('payload', payload);
-
-      this.apiService.accountInfo(JSON.stringify(payload)).subscribe(res => {
-        console.log(res, res);
-        this.accInfoData = res?.data;
-      },
-        (error: any) => {
-          console.log('error', error);
-          // this.showSpinner = false;
-        });
+      if (this.userInfo?.id) {
+        this.apiService.accountInfo(JSON.stringify(payload)).subscribe(res => {
+          console.log(res, res);
+          this.accInfoData = res?.data;
+        },
+          (error: any) => {
+            // console.log('error', error);
+            // this.showSpinner = false;
+          });
+      }
     } else {
       const payload = {
-        // user_id: this.userInfo?.id,
-        user_id: "13",
+        user_id: this.userInfo?.id,
+        // user_id: "13",
         plan_id: "1",
         leverage_id: this.leverageValue,
         account_type: this.acc_type,
@@ -185,25 +206,34 @@ export class VerificationDetailsComponent implements OnInit {
         balance: this.balanceValue
       }
       console.log('payload', payload);
-      this.apiService.accountInfo(JSON.stringify(payload)).subscribe(res => {
-        console.log(res, res);
-        this.accInfoData = res?.data;
-      },
-        (error: any) => {
-          console.log('error', error);
-          // this.showSpinner = false;
-        });
+      if (this.userInfo?.id) {
+        this.apiService.accountInfo(JSON.stringify(payload)).subscribe(res => {
+          console.log(res, res);
+          this.accInfoData = res?.data;
+          this.isStep = false;
+          this.isStep1 = false;
+          this.isAccount1 = false;
+          this.isAccount = false;
+          this.isDeposit = true;
+        },
+          (error: any) => {
+            // console.log('error', error);
+            // this.showSpinner = false;
+          });
+      }
     }
   }
 
-  radioChange(event: any) {
+  haveYouTrade(event: any) {
     this.trade = event.value;
-    // console.log("this.trade", this.trade);
+    // // console.log("this.trade", this.trade);
     if (event.value == null) {
-      // console.log("this.trade2", this.trade);
+      // // console.log("this.trade2", this.trade);
+      // this.isAccount = true;
       this.isValidTrade = true;
     } else {
-      // console.log("this.trade3", this.trade);
+      // // console.log("this.trade3", this.trade);
+      // this.isAccount = true;
       this.isValidTrade = false;
     }
   }
@@ -213,74 +243,58 @@ export class VerificationDetailsComponent implements OnInit {
   }
 
   getCountry(event: any) {
-    console.log('event', event);
   }
 
   onSelectDay(event: any) {
     this.day = event.value;
-    console.log('event', event);
   }
   onSelectMonth(event: any) {
     this.month = event.value;
-    console.log('event', event);
   }
   onSelectYear(event: any) {
     this.year = event.value;
-    console.log('event', event);
   }
 
   onSelectChange(searchValue: string) {
-    console.log(searchValue);
     this.acc_type = searchValue;
     if (searchValue == "2") {
       this.isShowBalance = true;
-      // this.fixedRates = false;
       this.isHideFixedRate = false;
     }
     else {
       this.isShowBalance = false;
       this.isHideFixedRate = true;
     }
-    // if (searchValue == "1") {
-    //   this.fixedRateValue = searchValue;
-    //   this.isHideAccType = false;
-    //   this.isHideCurrency = false;
-    // } else {
-    //   // this.isShowBalance = false;
-    //   this.isHideAccType = true;
-    //   this.isHideCurrency = true;
-    // }
   }
 
   onSelectChange1(searchValue: string) {
     this.currencyValue = searchValue;
     if (searchValue == "EUR") {
-      // this.isShowBalance = true;
       this.isHideFixedRate = false;
       this.currencySign = "€";
     } else {
       this.currencySign = "$";
-      // // this.isShowBalance = true;
       this.isHideFixedRate = true;
     }
   }
 
   onSelectChange2(searchValue: string) {
-    console.log(searchValue);
     if (searchValue == "1") {
       this.fixedRateValue = searchValue;
       this.isHideAccType = false;
       this.isHideCurrency = false;
     } else {
-      // this.isShowBalance = false;
       this.isHideAccType = true;
       this.isHideCurrency = true;
     }
   }
 
   onSelectLeverage(event: any) {
-    console.log('event', event.value);
     this.leverageValue = event.value;
+  }
+
+  redirectToDashboard() {
+    this.router.navigate(['/dashboard']);
   }
 
 }

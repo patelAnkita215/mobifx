@@ -10,44 +10,42 @@ import { Endpoints } from '../../app/api-list/api-end-points';
 })
 export class ApiService {
 
-    // public baseUrl: string = environment.baseApiUrl;
-
-    private http: HttpClient;
+    // public baseUrl: string = environment.baseApiUrl;    
 
     constructor(
-        http: HttpClient,
+        private http: HttpClient,
         public apiService: AuthInterceptor,
         // public endpoint: Endpoints,
     ) { }
 
     signup(user: any): Observable<any> {
-        return this.apiService.post(Endpoints.ApiEndpoint.Auth.signup, user);
+        return this.http.post(Endpoints.ApiEndpoint.Auth.signup, user);
     }
     login(user: any): Observable<any> {
-        return this.apiService.post(Endpoints.ApiEndpoint.Auth.login, user);
+        return this.http.post(Endpoints.ApiEndpoint.Auth.login, user);
     }
     verifyEmail(token: any): Observable<any> {
-        return this.apiService.get(Endpoints.ApiEndpoint.Auth.verifyEmail + token);
+        return this.http.get(Endpoints.ApiEndpoint.Auth.verifyEmail + token);
     }
-    userInfo(data: any): Observable<any> {
-        return this.apiService.post(Endpoints.ApiEndpoint.Auth.userInformation, data);
+    userInfo(payload: any): Observable<any> {
+        return this.http.post(Endpoints.ApiEndpoint.Auth.userInformation, payload);
     }
     getCountry() {
-        return this.apiService.get(Endpoints.ApiEndpoint.Auth.countries);
+        return this.http.get(Endpoints.ApiEndpoint.Auth.countries);
     }
-    accountInfo(data: any): Observable<any> {
-        return this.apiService.post(Endpoints.ApiEndpoint.Auth.accountInformation, data);
+    accountInfo(payload: any): Observable<any> {
+        return this.http.post(Endpoints.ApiEndpoint.Auth.accountInformation, payload);
     }
-    getPlan() {
-        return this.apiService.get(Endpoints.ApiEndpoint.Plans.plans);
+    getPlan(): Observable<any> {
+        return this.http.get(Endpoints.ApiEndpoint.Plans.plans);
     }
-    addPlan() {
-        return this.apiService.get(Endpoints.ApiEndpoint.Plans.addPlans);
-    }
-    getLeverage() {
-        return this.apiService.get(Endpoints.ApiEndpoint.Leverage.leverage);
-    }
-    addLeverage() {
-        return this.apiService.get(Endpoints.ApiEndpoint.Leverage.addLeverage);
-    }
+    // addPlan() {
+    //     return this.apiService.get(Endpoints.ApiEndpoint.Plans.addPlans);
+    // }
+    // getLeverage() {
+    //     return this.apiService.get(Endpoints.ApiEndpoint.Leverage.leverage);
+    // }
+    // addLeverage() {
+    //     return this.apiService.get(Endpoints.ApiEndpoint.Leverage.addLeverage);
+    // }
 }

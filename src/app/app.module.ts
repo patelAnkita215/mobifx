@@ -37,7 +37,7 @@ import { ApiService } from './services/api.service';
 // import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { CommonSpinnerService } from './services/common-spinner.service';
+// import { CommonSpinnerService } from './services/common-spinner.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component';
 import { VerificationDetailsComponent } from './components/verification-details/verification-details.component'
@@ -95,10 +95,14 @@ import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
   ],
   providers: [
     ApiService,
-    AuthInterceptor,
-    CommonSpinnerService,
+    // CommonSpinnerService,
     AuthGuard,
     CountryPickerService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

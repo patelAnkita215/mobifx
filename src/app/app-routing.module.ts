@@ -20,6 +20,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { EmailVerifyComponent } from './components/email-verify/email-verify.component'
 import { VerificationDetailsComponent } from './components/verification-details/verification-details.component'
 import { AuthGuard } from './services/auth-guard.services';
+import { AuthInterceptor } from './components/interceptors/auth.interceptor';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -27,7 +28,7 @@ const routes: Routes = [
   { path: 'signup', component: SignUpComponent },
   { path: 'sidebar', component: SidebarComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'deposit-history', component: DepositHistoryComponent, canActivate: [AuthGuard] },
   { path: 'transfer-history', component: TransferHistoryComponent, canActivate: [AuthGuard] },
   { path: 'withdraw-history', component: WithdrawHistoryComponent, canActivate: [AuthGuard] },
@@ -50,6 +51,6 @@ const routes: Routes = [
     initialNavigation: 'enabled'
   })],
   exports: [RouterModule],
-  providers: [AuthGuard]
+  providers: [AuthGuard, AuthInterceptor]
 })
 export class AppRoutingModule { }
