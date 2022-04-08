@@ -23,8 +23,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userAccountList();
-    // this.accountDetails();
+    this.userAccountList();    
   }
 
   userAccountList() {
@@ -37,8 +36,7 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  accountById(id: any) {
-    console.log('item', id);
+  accountById(id: any) {    
     this.accountDetails(id);
   }
 

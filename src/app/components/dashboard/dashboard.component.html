@@ -81,7 +81,11 @@
 																	"DEMO"}}
 																</div>
 															</div>
-															<div class="mt5-logo">{{planName}}<span>{{planName2}}</span>
+															<div class="mt5-logo">
+																{{accountDetailsList?.plan?.name.substr(this.accountDetailsList?.plan?.name.indexOf("
+																") + 1).slice(0,
+																2)}}<span>{{accountDetailsList?.plan?.name.substr(this.accountDetailsList?.plan?.name.indexOf("
+																	") + 1).slice(2)}}</span>
 															</div>
 															<span
 																class="account-selector__number">{{accountDetailsList?.account_id}}</span>
