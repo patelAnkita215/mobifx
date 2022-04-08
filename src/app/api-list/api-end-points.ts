@@ -43,14 +43,14 @@ export const Endpoints = {
             //     return `${apiurl}/plan/add`;
             // },
         },
-        // Leverage: {
-        //     get leverage() {
-        //         return `${apiurl}/leverage/list`;
-        //     },
-        //     get addLeverage() {
-        //         return `${apiurl}/leverage/add`;
-        //     },
-        // }
+        Leverage: {
+            get leverage() {
+                return `${apiurl}/leverage/list`;
+            },
+            // get addLeverage() {
+            //     return `${apiurl}/leverage/add`;
+            // },
+        },
         dashboard: {
             get userAccountList() {
                 return `${apiurl}/user-account`;
@@ -60,6 +60,9 @@ export const Endpoints = {
             },
             get internalTransfer() {
                 return `${apiurl}/internal-transfer`;
+            },
+            get dipositHistory() {
+                return `${apiurl}/deposite/history`;
             }
         }
     }

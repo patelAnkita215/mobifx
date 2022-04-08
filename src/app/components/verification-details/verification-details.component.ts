@@ -256,7 +256,7 @@ export class VerificationDetailsComponent implements OnInit {
 
   onSelectChange(searchValue: string) {
     this.acc_type = searchValue;
-    if (searchValue == "2") {
+    if (searchValue == "0") {
       this.isShowBalance = true;
       this.isHideFixedRate = false;
     }

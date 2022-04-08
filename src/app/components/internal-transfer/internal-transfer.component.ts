@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../services/shared.service';
 import { ApiService } from '../../services/api.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-internal-transfer',
@@ -18,13 +20,16 @@ export class InternalTransferComponent implements OnInit {
 
   constructor(
     public sharedService: SharedService,
-    public apiService: ApiService) {
+    public apiService: ApiService,
+    public router: Router,
+    private _snackBar: MatSnackBar) {
     this.sharedService.sidebar = true;
     this.sharedService.isHeader = false;
   }
 
   ngOnInit() {
     this.userAccountList();
+    this.clearForm();
   }
 
   userAccountList() {
@@ -47,24 +52,28 @@ export class InternalTransferComponent implements OnInit {
 
   internalTransferSumbit() {
     let payload = {
-      code: this.code.toString(),
+      code: this.code,
       user_id: localStorage.getItem('id'),
-      to_account_information_id: this.idByTo.toString(),
-      from_account_information_id: this.idByFrom.toString(),
-      amount: this.ammountOfTran.toString()
+      to_account_information_id: this.idByTo,
+      from_account_information_id: this.idByFrom,
+      amount: this.ammountOfTran
     }
-    console.log(payload);
 
-    this.apiService.AddInterTransfer(payload).subscribe(res => {
-      console.log('res', res);
-
-      this.idByFrom = null;
-      this.idByTo = null;
-      this.ammountOfTran = null;
-      this.code = null;
+    this.apiService.addInterTransfer(payload).subscribe(res => {
+      this.clearForm();
+      this._snackBar.open(res.message, 'Undo', {
+        duration: 3000
+      });
+      this.router.navigate(['/dashboard']);
     },
       (error: any) => {
 
       });
+  }
+  clearForm() {
+    this.idByFrom = null;
+    this.idByTo = null;
+    this.ammountOfTran = null;
+    this.code = null;
   }
 }

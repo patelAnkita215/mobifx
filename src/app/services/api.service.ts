@@ -42,9 +42,9 @@ export class ApiService {
     // addPlan() {
     //     return this.apiService.get(Endpoints.ApiEndpoint.Plans.addPlans);
     // }
-    // getLeverage() {
-    //     return this.apiService.get(Endpoints.ApiEndpoint.Leverage.leverage);
-    // }
+    getLeverage() {
+        return this.http.get(Endpoints.ApiEndpoint.Leverage.leverage);
+    }
     // addLeverage() {
     //     return this.apiService.get(Endpoints.ApiEndpoint.Leverage.addLeverage);
     // }
@@ -54,7 +54,10 @@ export class ApiService {
     getAccountList(id: any): Observable<any> {
         return this.http.get(Endpoints.ApiEndpoint.dashboard.accountDetails + id);
     }
-    AddInterTransfer(payload): Observable<any> {
+    addInterTransfer(payload): Observable<any> {
         return this.http.post(Endpoints.ApiEndpoint.dashboard.internalTransfer, payload);
+    }
+    depositHistory(payload): Observable<any> {
+        return this.http.post(Endpoints.ApiEndpoint.dashboard.dipositHistory, payload);
     }
 }

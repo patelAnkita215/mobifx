@@ -59,24 +59,22 @@
 
                               </div>
                               <div class="multiselect-content-wrapper dropdown-menu"
-													aria-labelledby="dropdownMenuButton1">
-													<!-- <div class="multiselect__content dropdown-menu" style="display: inline-block;"> -->
+                                aria-labelledby="dropdownMenuButton1">
+                                <!-- <div class="multiselect__content dropdown-menu" style="display: inline-block;"> -->
 
-													<a *ngFor="let item of userAccount"
-														class="multiselect__element dropdown-item">
-                            <span class="multiselect__single"
-                            (click)="accountByFrom(item?.id)">
-                            <div class="account-selector-list-item">
-                              <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
-                                ") + 1).slice(0,
-                                2)}}<span>{{item?.plan?.name.substr(item?.plan?.name.indexOf("
-                                  ") + 1).slice(2)}}</span></div>
-                              <span class="account-selector__number">{{item?.account_id}}</span>
-                            </div>
-                          </span>
+                                <a *ngFor="let item of userAccount" class="multiselect__element dropdown-item">
+                                  <span class="multiselect__single" (click)="accountByFrom(item?.id)">
+                                    <div class="account-selector-list-item">
+                                      <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                        ") + 1).slice(0,
+                                        2)}}<span>{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                          ") + 1).slice(2)}}</span></div>
+                                      <span class="account-selector__number">{{item?.account_id}}</span>
+                                    </div>
+                                  </span>
 
-													</a>
-												</div>
+                                </a>
+                              </div>
                             </div>
 
 
@@ -163,24 +161,22 @@
 
                               </div>
                               <div class="multiselect-content-wrapper dropdown-menu"
-													aria-labelledby="dropdownMenuButton2">
-													<!-- <div class="multiselect__content dropdown-menu" style="display: inline-block;"> -->
+                                aria-labelledby="dropdownMenuButton2">
+                                <!-- <div class="multiselect__content dropdown-menu" style="display: inline-block;"> -->
 
-													<a *ngFor="let item of userAccount"
-														class="multiselect__element dropdown-item">
-                            <span class="multiselect__single"
-                            (click)="accountByTo(item?.id)">
-                            <div class="account-selector-list-item">
-                              <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
-                                ") + 1).slice(0,
-                                2)}}<span>{{item?.plan?.name.substr(item?.plan?.name.indexOf("
-                                  ") + 1).slice(2)}}</span></div>
-                              <span class="account-selector__number">{{item?.account_id}}</span>
-                            </div>
-                          </span>
+                                <a *ngFor="let item of userAccount" class="multiselect__element dropdown-item">
+                                  <span class="multiselect__single" (click)="accountByTo(item?.id)">
+                                    <div class="account-selector-list-item">
+                                      <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                        ") + 1).slice(0,
+                                        2)}}<span>{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                          ") + 1).slice(2)}}</span></div>
+                                      <span class="account-selector__number">{{item?.account_id}}</span>
+                                    </div>
+                                  </span>
 
-													</a>
-												</div>
+                                </a>
+                              </div>
                             </div>
 
                           </div>
