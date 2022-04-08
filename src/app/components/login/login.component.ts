@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
           this.isValidForm = false;
           this.showSpinner = false;
           localStorage.setItem('token', res.data?.accessToken);
+          localStorage.setItem('id', res.data?.user_info?.id);
           localStorage.setItem('firstname', res.data?.user_info?.firstname);
           localStorage.setItem('lastname', res.data?.user_info?.lastname);
           localStorage.setItem('email', res.data?.user_info?.email);

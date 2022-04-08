@@ -57,6 +57,9 @@ export const Endpoints = {
             },
             get accountDetails() {
                 return `${apiurl}/get-account-information/`;
+            },
+            get internalTransfer() {
+                return `${apiurl}/internal-transfer`;
             }
         }
     }

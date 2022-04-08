@@ -54,4 +54,7 @@ export class ApiService {
     getAccountList(id: any): Observable<any> {
         return this.http.get(Endpoints.ApiEndpoint.dashboard.accountDetails + id);
     }
+    AddInterTransfer(payload): Observable<any> {
+        return this.http.post(Endpoints.ApiEndpoint.dashboard.internalTransfer, payload);
+    }
 }

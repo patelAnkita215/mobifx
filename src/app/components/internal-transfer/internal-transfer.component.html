@@ -1,19 +1,13 @@
 <main>
   <!-- live chat -->
-  <button
-    class="live-chat-button"
-    data-auto-event-category="UXclick"
-    data-auto-event-action="Support click"
-    data-auto-event-label="livechat"
-  >
+  <button class="live-chat-button" data-auto-event-category="UXclick" data-auto-event-action="Support click"
+    data-auto-event-label="livechat">
     <span class="live-chat-button__label">Live chat support</span>
   </button>
   <!-- login box -->
   <section class="login internal-trasfer pb-3">
     <div class="container">
-      <div
-        class="row align-items-center main-box justify-content-center w-100 mx-0"
-      >
+      <div class="row align-items-center main-box justify-content-center w-100 mx-0">
         <!-- <div class="col-xl-6 col-md-6 col-lg-6">
                             <div class="left-side">
                             	<img data-src="images/login.webp" class="img-fluid lazyload" />
@@ -41,53 +35,34 @@
                         <label for="email" class="form-element-title">
                           From
                         </label>
-                        <div
-                          class="form-element-item plus-button"
-                          slot="account-selector"
-                          ishasbutton="true"
-                        >
-                          <!---->
+                        <div class="form-element-item plus-button" slot="account-selector" ishasbutton="true">
+
                           <div class="form-element-multiselect">
-                            <input
-                              name="billingAddress"
-                              type="hidden"
-                              value="46357357"
-                            />
-                            <div
-                              tabindex="0"
-                              class="multiselect multiselect--above dropdown"
-                            >
+                            <input name="billingAddress" type="hidden" value="46357357" />
+                            <div tabindex="0" class="multiselect multiselect--above dropdown">
                               <div class="multiselect__select"></div>
-                              <div
-                                class="multiselect-tags"
-                                id="dropdownMenuButton1"
-                                data-toggle="dropdown"
-                                aria-expanded="false"
-                              >
-                                <div
-                                  class="multiselect__tags-wrap"
-                                  style="display: none"
-                                ></div>
-                                <!---->
-                                <div
-                                  class="multiselect__spinner"
-                                  style="display: none"
-                                ></div>
-                                <!---->
-                                <span class="multiselect__single">
+                              <div class="multiselect-tags" id="dropdownMenuButton1" data-toggle="dropdown"
+                                aria-expanded="false">
+                                <div class="multiselect__tags-wrap" style="display: none"></div>
+
+                                <div class="multiselect__spinner" style="display: none"></div>
+
+                                <span *ngFor="let item of userAccount" class="multiselect__single"
+                                  (click)="accountByFrom(item?.id)">
                                   <div class="account-selector-list-item">
-                                    <div class="mt5-logo">MT<span>5</span></div>
-                                    <span class="account-selector__number"
-                                      >46357357</span
-                                    >
+                                    <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                      ") + 1).slice(0,
+                                      2)}}<span>{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                        ") + 1).slice(2)}}</span></div>
+                                    <span class="account-selector__number">{{item?.account_id}}</span>
                                   </div>
                                 </span>
-                                <!---->
+
                               </div>
                             </div>
-                            <!---->
+
                           </div>
-                          <!---->
+
                         </div>
                         <!-- <div class="form-element-multiselect">
                           <select
@@ -145,53 +120,34 @@
                         <label for="email" class="form-element-title">
                           To
                         </label>
-						<div
-                          class="form-element-item plus-button"
-                          slot="account-selector"
-                          ishasbutton="true"
-                        >
-                          <!---->
+                        <div class="form-element-item plus-button" slot="account-selector" ishasbutton="true">
+
                           <div class="form-element-multiselect">
-                            <input
-                              name="billingAddress"
-                              type="hidden"
-                              value="46357357"
-                            />
-                            <div
-                              tabindex="0"
-                              class="multiselect multiselect--above dropdown"
-                            >
+                            <input name="billingAddress" type="hidden" value="46357357" />
+                            <div tabindex="0" class="multiselect multiselect--above dropdown">
                               <div class="multiselect__select"></div>
-                              <div
-                                class="multiselect-tags"
-                                id="dropdownMenuButton1"
-                                data-toggle="dropdown"
-                                aria-expanded="false"
-                              >
-                                <div
-                                  class="multiselect__tags-wrap"
-                                  style="display: none"
-                                ></div>
-                                <!---->
-                                <div
-                                  class="multiselect__spinner"
-                                  style="display: none"
-                                ></div>
-                                <!---->
-                                <span class="multiselect__single">
+                              <div class="multiselect-tags" id="dropdownMenuButton1" data-toggle="dropdown"
+                                aria-expanded="false">
+                                <div class="multiselect__tags-wrap" style="display: none"></div>
+
+                                <div class="multiselect__spinner" style="display: none"></div>
+
+                                <span *ngFor="let item of userAccount" class="multiselect__single"
+                                  (click)="accountByTo(item?.id)">
                                   <div class="account-selector-list-item">
-                                    <div class="mt5-logo">MT<span>5</span></div>
-                                    <span class="account-selector__number"
-                                      >46357357</span
-                                    >
+                                    <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                      ") + 1).slice(0,
+                                      2)}}<span>{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                        ") + 1).slice(2)}}</span></div>
+                                    <span class="account-selector__number">{{item?.account_id}}</span>
                                   </div>
                                 </span>
-                                <!---->
+
                               </div>
                             </div>
-                            <!---->
+
                           </div>
-                          <!---->
+
                         </div>
                         <!-- <div class="form-element-multiselect">
                           <select
@@ -281,57 +237,29 @@
                         </label>
 
                         <div class="form-element-input-block">
-                          <div
-                            class="form-element-prefix"
-                            id="from-account-currency"
-                          ></div>
-                          <input
-                            type="tel"
-                            name="amount"
-                            id="amount"
-                            value=""
-                            class="form-element-unit amount-field"
-                            autocomplete="off"
-                          />
+                          <div class="form-element-prefix" id="from-account-currency"></div>
+                          <input type="number" name="amount" id="amount" [(ngModel)]="ammountOfTran"
+                            class="form-element-unit amount-field" autocomplete="off" />
                         </div>
-                        <div
-                          class="form-element-post-title fixed-text-from"
-                          style="display: none"
-                        >
+                        <div class="form-element-post-title fixed-text-from" style="display: none">
                           Fixed rate applied
                         </div>
                       </div>
                     </div>
 
-                    <div
-                      class="internal-transfer-row fl-grid-element outgoing"
-                      id="amount-to-container"
-                      style="display: none"
-                    >
+                    <div class="internal-transfer-row fl-grid-element outgoing" id="amount-to-container"
+                      style="display: none">
                       <div class="form-element-item">
                         <label for="email" class="form-element-title">
                           You will get after the conversion
                         </label>
 
                         <div class="form-element-input-block">
-                          <div
-                            class="form-element-prefix"
-                            id="to-account-currency"
-                          ></div>
-                          <input
-                            readonly=""
-                            type="text"
-                            name="amount-to"
-                            id="amount-to"
-                            value=""
-                            class="form-element-unit _prefix to-amount-field"
-                            autocomplete="off"
-                          />
+                          <div class="form-element-prefix" id="to-account-currency"></div>
+                          <input readonly="" type="text" name="amount-to" id="amount-to" value=""
+                            class="form-element-unit _prefix to-amount-field" autocomplete="off" />
                         </div>
-                        <div
-                          class="form-element-post-title fixed-text-to"
-                          style="display: none"
-                        >
+                        <div class="form-element-post-title fixed-text-to" style="display: none">
                           Fixed rate applied
                         </div>
                       </div>
@@ -347,35 +275,20 @@
                           <div class="form-element-item">
                             <label for="email" class="form-element-title">
                               <div class="tooltip-hover">
-                                <div
-                                  class="tooltip-hover-content right-center dark"
-                                >
+                                <div class="tooltip-hover-content right-center dark">
                                   MobiFX PIN contains four digits. You can find
                                   your MobiFX PIN in a welcome letter from
                                   MobiFX
                                 </div>
-                                <span class="tooltip-hover-text"
-                                  >Enter your PIN</span
-                                >
-                                <img
-                                  src="../../../assets/images/icon/information.png"
-                                  class="tooltip-ico"
-                                />
+                                <span class="tooltip-hover-text">Enter your PIN</span>
+                                <img src="../../../assets/images/icon/information.png" class="tooltip-ico" />
                               </div>
                             </label>
 
-                            <div
-                              class="form-element-input-block pin-code-block"
-                            >
-                              <input
-                                type="tel"
-                                name="pinCode"
-                                id="pincode"
-                                value=""
-                                placeholder="____"
-                                class="form-element-unit pincode-field placeholder"
-                                autocomplete="off"
-                              />
+                            <div class="form-element-input-block pin-code-block">
+                              <input type="text" name="pinCode" id="pincode" maxlength="4" [(ngModel)]="code"
+                                placeholder="____" class="form-element-unit pincode-field placeholder"
+                                autocomplete="off" />
                             </div>
                           </div>
                         </div>
@@ -387,23 +300,12 @@
                       </div>
                     </div>
 
-                    <div
-                      class="request-btn internal-transfer-row fl-grid-element fl-grid-flex"
-                    >
-                      <button
-                        type="submit"
-                        name="request"
-                        id="request"
-                        class="btn btn-blue internal-transfer-btn"
-                        disabled=""
-                      >
+                    <div class="request-btn internal-transfer-row fl-grid-element fl-grid-flex">
+                      <button type="submit" name="request" id="request" class="btn btn-blue internal-transfer-btn"
+                        (click)="internalTransferSumbit()">
                         Submit request
                       </button>
-                      <input
-                        type="hidden"
-                        name="addressTo"
-                        class="address-to-input"
-                      />
+                      <input type="hidden" name="addressTo" class="address-to-input" />
                     </div>
                   </div>
                 </fieldset>
