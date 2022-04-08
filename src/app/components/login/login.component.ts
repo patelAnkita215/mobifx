@@ -33,10 +33,15 @@ export class LoginComponent implements OnInit {
     });
     this.sharedservice.sidebar = false;
     this.sharedservice.isHeader = true;
+    if (localStorage.getItem("token")) {
+      this.router.navigate(['/dashboard']);
+    }
   }
+  
   toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }
+  
   ngOnInit(): void {
     // this.init();
   }

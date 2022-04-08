@@ -48,4 +48,10 @@ export class ApiService {
     // addLeverage() {
     //     return this.apiService.get(Endpoints.ApiEndpoint.Leverage.addLeverage);
     // }
+    getUserAllAccountList(): Observable<any> {
+        return this.http.get(Endpoints.ApiEndpoint.dashboard.userAccountList);
+    }
+    getAccountList(id: any): Observable<any> {
+        return this.http.get(Endpoints.ApiEndpoint.dashboard.accountDetails + id);
+    }
 }

@@ -51,5 +51,13 @@ export const Endpoints = {
         //         return `${apiurl}/leverage/add`;
         //     },
         // }
+        dashboard: {
+            get userAccountList() {
+                return `${apiurl}/user-account`;
+            },
+            get accountDetails() {
+                return `${apiurl}/get-account-information/`;
+            }
+        }
     }
 }

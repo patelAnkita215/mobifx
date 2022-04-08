@@ -1,3 +1,8 @@
+<div class="page-overlay-wrapper" *ngIf=showSpinner>
+	<div class="spinner-div">
+		<mat-spinner></mat-spinner>
+	</div>
+</div>
 <main>
 	<!-- live chat -->
 	<button class="live-chat-button" data-auto-event-category="UXclick" data-auto-event-action="Support click"
@@ -58,7 +63,7 @@
 								<div class="account-box-selector">
 									<div class="form-element-item plus-button" slot="account-selector"
 										ishasbutton="true">
-										<!---->
+
 										<div class="form-element-multiselect">
 											<input name="billingAddress" type="hidden" value="46357357">
 											<div tabindex="0" class="multiselect multiselect--above dropdown">
@@ -66,43 +71,52 @@
 												<div class="multiselect-tags" id="dropdownMenuButton1"
 													data-toggle="dropdown" aria-expanded="false">
 													<div class="multiselect__tags-wrap" style="display: none;"></div>
-													<!---->
+
 													<div class="multiselect__spinner" style="display: none;"></div>
-													<!---->
+
 													<span class="multiselect__single">
 														<div class="account-selector-list-item">
 															<div class="real-div">
-																<div>REAL</div>
+																<div>{{accountDetailsList?.account_type == 1 ? "REAL" :
+																	"DEMO"}}
+																</div>
 															</div>
-															<div class="mt5-logo">MT<span>5</span></div>
-															<span class="account-selector__number">46357357</span>
+															<div class="mt5-logo">{{planName}}<span>{{planName2}}</span>
+															</div>
+															<span
+																class="account-selector__number">{{accountDetailsList?.account_id}}</span>
 														</div>
 													</span>
-													<!---->
+
 												</div>
 												<div class="multiselect-content-wrapper dropdown-menu"
 													aria-labelledby="dropdownMenuButton1">
 													<!-- <div class="multiselect__content dropdown-menu" style="display: inline-block;"> -->
-													<!---->
-													<a class="multiselect__element dropdown-item">
-														<span class="multiselect__option multiselect__option-highlight">
+
+													<a *ngFor="let item of userAccount;"
+														class="multiselect__element dropdown-item">
+														<span class="multiselect__option multiselect__option-highlight"
+															(click)="accountById(item?.id)">
 															<div class="account-selector-list-item">
 																<div class="real-div">
-																	<div>REAL</div>
+																	<div>{{item?.account_type == 1 ? "REAL" :
+																		"DEMO"}}</div>
 																</div>
-																<div class="mt5-logo">MT<span>5</span></div>
-																<span class="account-selector__number">89514925</span>
-																<span class="account-selector__balance">$5,000.00</span>
+																<div class="mt5-logo">{{item?.plan?.name}}</div>
+																<span
+																	class="account-selector__number">{{item?.account_id}}</span>
+																<span
+																	class="account-selector__balance">{{item?.balance}}</span>
 															</div>
 														</span>
-														<!---->
+
 													</a>
 													<a class="multiselect__element dropdown-item">
 														<span class="multiselect-option">
 															<button class="account-selector-list-btn">Open new
 																account</button>
 														</span>
-														<!---->
+
 													</a>
 													<!-- <li style="display: none;">
 															<span class="multiselect__option">No elements found. Consider changing the search
@@ -139,7 +153,8 @@
 														src="../../../assets/images/icon/question-mark.png"
 														class="img-fluid"></div>
 											</div>
-											<div class="info-value"><a href="#">1:500</a></div>
+											<div class="info-value"><a
+													href="#">{{accountDetailsList?.leverage?.name}}</a></div>
 										</div>
 										<div class="info-row bordered">
 											<div class="info-name">
@@ -157,7 +172,8 @@
 														src="../../../assets/images/icon/question-mark.png"
 														class="img-fluid"></div>
 											</div>
-											<div class="info-value"></div>
+											<div class="info-value">{{accountDetailsList?.fixed_rate == 1 ? "Yes" :
+												"No"}}</div>
 										</div>
 									</div>
 								</div>
@@ -173,7 +189,8 @@
 														src="../../../assets/images/icon/question-mark.png"
 														class="img-fluid"></div>
 											</div>
-											<div class="info-value">$0.00</div>
+											<div class="info-value">{{accountDetailsList?.currency == 1 ? "$" :
+												"€"}}0.00</div>
 										</div>
 										<div class="info-row">
 											<div class="info-name">
@@ -182,7 +199,8 @@
 														src="../../../assets/images/icon/question-mark.png"
 														class="img-fluid"></div>
 											</div>
-											<div class="info-value">$0.00</div>
+											<div class="info-value">{{accountDetailsList?.currency == 1 ? "$" :
+												"€"}}0.00</div>
 										</div>
 										<div class="info-row">
 											<div class="info-name">
@@ -191,7 +209,8 @@
 														src="../../../assets/images/icon/question-mark.png"
 														class="img-fluid"></div>
 											</div>
-											<div class="info-value">$0.00</div>
+											<div class="info-value">{{accountDetailsList?.currency == 1 ? "$" : "€"}}
+												{{accountDetailsList?.balance}}</div>
 										</div>
 									</div>
 									<div class="info-button">
@@ -262,7 +281,49 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<tr *ngFor="let item of userAccount;">
+										<td>
+											<div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+												") + 1).slice(0,
+												2)}}<span>{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+													") + 1).slice(2)}}</span></div>
+										</td>
+										<td class="action-dropdown">
+											<span>{{item?.account_id}}</span>
+											<div class="dropdown">
+												<div class="triangle" type="button" id="dropdownMenuButton"
+													data-toggle="dropdown" aria-expanded="false">▼</div>
+												<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+													<a href="#">Switch to this account</a>
+													<a href="#">Restore password</a>
+													<a href="#">Hide account from the main page</a>
+													<a href="#">Deposit</a>
+													<a href="#"
+														class="js-account-list-withdrawal-item-menu">Withdrawal</a>
+													<a href="#">Trades history</a>
+													<a target="_blank" href="#">Log in to MT5 Web</a>
+												</div>
+											</div>
+										</td>
+										<td class="action-type">
+											<div class="real-div">
+												<div>{{item?.account_type == 1 ? "REAL" :
+													"DEMO"}}</div>
+											</div>
+										</td>
+										<td>
+											MobiFX-Real2
+										</td>
+										<td style="text-align:right">
+											<span class="fix-ltr">{{item?.currency == 1 ? "$" : "€"}}
+												{{item?.balance}}</span>
+										</td>
+										<td style="text-align:right">
+											<span class="fix-ltr">$0.00</span>
+										</td>
+										<td style="width:170px;" class="_wrap _left"></td>
+									</tr>
+									<!-- <tr>
 										<td>
 											<div class="mt5-logo">MT<span>5</span></div>
 										</td>
@@ -298,44 +359,7 @@
 											<span class="fix-ltr">$0.00</span>
 										</td>
 										<td style="width:170px;" class="_wrap _left"></td>
-									</tr>
-									<tr>
-										<td>
-											<div class="mt5-logo">MT<span>5</span></div>
-										</td>
-										<td class="action-dropdown">
-											<span>46357357</span>
-											<div class="dropdown">
-												<div class="triangle" type="button" id="dropdownMenuButton"
-													data-toggle="dropdown" aria-expanded="false">▼</div>
-												<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-													<a href="#">Switch to this account</a>
-													<a href="#">Restore password</a>
-													<a href="#">Hide account from the main page</a>
-													<a href="#">Deposit</a>
-													<a href="#"
-														class="js-account-list-withdrawal-item-menu">Withdrawal</a>
-													<a href="#">Trades history</a>
-													<a target="_blank" href="#">Log in to MT5 Web</a>
-												</div>
-											</div>
-										</td>
-										<td class="action-type">
-											<div class="real-div">
-												<div>REAL</div>
-											</div>
-										</td>
-										<td>
-											MobiFX-Real2
-										</td>
-										<td style="text-align:right">
-											<span class="fix-ltr">$0.00</span>
-										</td>
-										<td style="text-align:right">
-											<span class="fix-ltr">$0.00</span>
-										</td>
-										<td style="width:170px;" class="_wrap _left"></td>
-									</tr>
+									</tr> -->
 								</tbody>
 							</table>
 						</div>

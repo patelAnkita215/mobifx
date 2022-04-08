@@ -14,8 +14,8 @@ export class AppComponent {
     public sharedservice: SharedService,
     public router: Router
   ) {
-    if (localStorage.getItem("token")) {
-      this.router.navigate(['/dashboard']);
-    }
+    // if (localStorage.getItem("token")) {
+    //   this.router.navigate(['/dashboard']);
+    // }
   }
 }

@@ -102,6 +102,7 @@ export class VerificationDetailsComponent implements OnInit {
       if (res.status == true) {
         // this.sharedService.token = res.data?.accessToken;
         localStorage.setItem("token", res.data?.accessToken);
+        localStorage.setItem('id', res.data?.user_info?.id)
         localStorage.setItem('firstname', res.data?.user_info?.firstname);
         localStorage.setItem('lastname', res.data?.user_info?.lastname);
         localStorage.setItem('email', res.data?.user_info?.email);
@@ -139,7 +140,7 @@ export class VerificationDetailsComponent implements OnInit {
       return;
     } else {
       const payload = {
-        user_id: this.userInfo?.id,
+        user_id: this.userInfo?.id.toString(),
         // user_id: "13",
         country_id: "1",
         country_code: this.accountInformation.controls.phone_number.value['dialCode'],
@@ -173,9 +174,8 @@ export class VerificationDetailsComponent implements OnInit {
     this.isAccount = false;
     this.isDeposit = true;
     if (this.acc_type == "1") {
-      const payload = {
-        user_id: this.userInfo?.id,
-        // user_id: "13",
+      let payload = {
+        user_id: this.userInfo?.id.toString(),
         plan_id: "1",
         leverage_id: this.leverageValue,
         account_type: this.acc_type,
@@ -195,9 +195,8 @@ export class VerificationDetailsComponent implements OnInit {
           });
       }
     } else {
-      const payload = {
-        user_id: this.userInfo?.id,
-        // user_id: "13",
+      let payload = {
+        user_id: this.userInfo?.id.toString(),
         plan_id: "1",
         leverage_id: this.leverageValue,
         account_type: this.acc_type,
