@@ -47,8 +47,7 @@
 
                                 <div class="multiselect__spinner" style="display: none"></div>
 
-                                <span *ngFor="let item of userAccount" class="multiselect__single"
-                                  (click)="accountByFrom(item?.id)">
+                                <!-- <span class="multiselect__single">
                                   <div class="account-selector-list-item">
                                     <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
                                       ") + 1).slice(0,
@@ -56,10 +55,30 @@
                                         ") + 1).slice(2)}}</span></div>
                                     <span class="account-selector__number">{{item?.account_id}}</span>
                                   </div>
-                                </span>
+                                </span> -->
 
                               </div>
+                              <div class="multiselect-content-wrapper dropdown-menu"
+													aria-labelledby="dropdownMenuButton1">
+													<!-- <div class="multiselect__content dropdown-menu" style="display: inline-block;"> -->
+
+													<a *ngFor="let item of userAccount"
+														class="multiselect__element dropdown-item">
+                            <span class="multiselect__single"
+                            (click)="accountByFrom(item?.id)">
+                            <div class="account-selector-list-item">
+                              <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                ") + 1).slice(0,
+                                2)}}<span>{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                  ") + 1).slice(2)}}</span></div>
+                              <span class="account-selector__number">{{item?.account_id}}</span>
                             </div>
+                          </span>
+
+													</a>
+												</div>
+                            </div>
+
 
                           </div>
 
@@ -126,14 +145,13 @@
                             <input name="billingAddress" type="hidden" value="46357357" />
                             <div tabindex="0" class="multiselect multiselect--above dropdown">
                               <div class="multiselect__select"></div>
-                              <div class="multiselect-tags" id="dropdownMenuButton1" data-toggle="dropdown"
+                              <div class="multiselect-tags" id="dropdownMenuButton2" data-toggle="dropdown"
                                 aria-expanded="false">
                                 <div class="multiselect__tags-wrap" style="display: none"></div>
 
                                 <div class="multiselect__spinner" style="display: none"></div>
 
-                                <span *ngFor="let item of userAccount" class="multiselect__single"
-                                  (click)="accountByTo(item?.id)">
+                                <!-- <span class="multiselect__single">
                                   <div class="account-selector-list-item">
                                     <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
                                       ") + 1).slice(0,
@@ -141,9 +159,28 @@
                                         ") + 1).slice(2)}}</span></div>
                                     <span class="account-selector__number">{{item?.account_id}}</span>
                                   </div>
-                                </span>
+                                </span> -->
 
                               </div>
+                              <div class="multiselect-content-wrapper dropdown-menu"
+													aria-labelledby="dropdownMenuButton2">
+													<!-- <div class="multiselect__content dropdown-menu" style="display: inline-block;"> -->
+
+													<a *ngFor="let item of userAccount"
+														class="multiselect__element dropdown-item">
+                            <span class="multiselect__single"
+                            (click)="accountByTo(item?.id)">
+                            <div class="account-selector-list-item">
+                              <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                ") + 1).slice(0,
+                                2)}}<span>{{item?.plan?.name.substr(item?.plan?.name.indexOf("
+                                  ") + 1).slice(2)}}</span></div>
+                              <span class="account-selector__number">{{item?.account_id}}</span>
+                            </div>
+                          </span>
+
+													</a>
+												</div>
                             </div>
 
                           </div>
@@ -239,7 +276,7 @@
                         <div class="form-element-input-block">
                           <div class="form-element-prefix" id="from-account-currency"></div>
                           <input type="number" name="amount" id="amount" [(ngModel)]="ammountOfTran"
-                            class="form-element-unit amount-field" autocomplete="off" />
+                            class="form-element-unit amount-field padding-left" autocomplete="off" />
                         </div>
                         <div class="form-element-post-title fixed-text-from" style="display: none">
                           Fixed rate applied
@@ -257,7 +294,7 @@
                         <div class="form-element-input-block">
                           <div class="form-element-prefix" id="to-account-currency"></div>
                           <input readonly="" type="text" name="amount-to" id="amount-to" value=""
-                            class="form-element-unit _prefix to-amount-field" autocomplete="off" />
+                            class="form-element-unit _prefix to-amount-field padding-left" autocomplete="off" />
                         </div>
                         <div class="form-element-post-title fixed-text-to" style="display: none">
                           Fixed rate applied

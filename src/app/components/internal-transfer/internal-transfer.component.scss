@@ -159,6 +159,7 @@
 								&.placeholder {
 									letter-spacing: 3px;
 								}
+								&.padding-left {padding-left: 55px;}
 							}
 						}
 					}
@@ -268,6 +269,7 @@
 			}
 			.multiselect-content-wrapper {
 				border-top: 1px solid #e8e8e8;
+				width: 100%;
 
 				.multiselect__element {
 					display: block;
