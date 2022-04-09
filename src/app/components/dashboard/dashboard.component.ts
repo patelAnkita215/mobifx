@@ -12,8 +12,7 @@ export class DashboardComponent implements OnInit {
   showSpinner: boolean = false;
   userAccount: any = [];
   accountDetailsList: any = [];
-  planName: string;
-  planName2: string;
+  id: any;
 
   constructor(
     public sharedService: SharedService,
@@ -23,20 +22,24 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userAccountList();    
+    this.userAccountList();
+    if (this.id == null) {
+      this.accountDetails(1);
+    }
   }
 
   userAccountList() {
     this.showSpinner = true;
     this.apiService.getUserAllAccountList().subscribe(res => {
       this.showSpinner = false;
-      this.userAccount = res?.data;      
+      this.userAccount = res?.data;
     },
-      (error: any) => {        
+      (error: any) => {
       });
   }
 
-  accountById(id: any) {    
+  accountById(id: any) {
+    this.id = id;
     this.accountDetails(id);
   }
 
@@ -45,8 +48,6 @@ export class DashboardComponent implements OnInit {
     this.apiService.getAccountList(id).subscribe(res => {
       this.showSpinner = false;
       this.accountDetailsList = res?.data;
-      this.planName = this.accountDetailsList?.plan?.name.substr(this.accountDetailsList?.plan?.name.indexOf(" ") + 1).slice(0, 2);
-      this.planName2 = this.accountDetailsList?.plan?.name.substr(this.accountDetailsList?.plan?.name.indexOf(" ") + 1).slice(2);
     },
       (error: any) => {
       });

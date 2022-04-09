@@ -44,6 +44,7 @@ export class VerificationDetailsComponent implements OnInit {
   selectedMonth = "0";
   selectedYear = "0";
   planData = [];
+  leverageData = [];
   isShowBalance: boolean = false;
   // fixedRates: boolean = true;
   isHideFixedRate: boolean = true;
@@ -89,15 +90,20 @@ export class VerificationDetailsComponent implements OnInit {
       this.emailVerification();
     }
     this.getPlans();
+    this.getLeverage();
     // this.apiService.getCountry().subscribe(res => {
     // //   console.log('res', res);
     // });
     this.countryPicker.getCountries().subscribe((countries: ICountry[]) => this.countries = countries);
   }
 
+  logout() {
+    localStorage.clear();
+  }
+
   emailVerification() {
     // this.showSpinner = true;
-    this.apiService.verifyEmail(this.token).subscribe(res => {
+    this.apiService.verifyEmail(this.token).subscribe((res) => {
       console.log('res', res);
       if (res.status == true) {
         // this.sharedService.token = res.data?.accessToken;
@@ -109,22 +115,23 @@ export class VerificationDetailsComponent implements OnInit {
         this.userInfo = res?.data?.user_info;
         this.router.navigate(['/verification-details']);
       }
-    },
-      (error: any) => {
-      }
-    );
+    });
   }
 
   getPlans() {
-    this.apiService.getPlan().subscribe(res => {
-      console.log('res', res);
+    this.apiService.getPlan().subscribe((res) => {
       if (res) {
         this.planData = res?.data;
       }
-    },
-      (error: any) => {
+    });
+  }
+
+  getLeverage() {
+    this.apiService.getLeverage().subscribe((res) => {
+      if (res) {
+        this.leverageData = res?.data;
       }
-    );
+    });
   }
 
   userInformation() {
@@ -150,19 +157,13 @@ export class VerificationDetailsComponent implements OnInit {
         city: this.accountInformation.controls.city.value,
         street_address: this.accountInformation.controls.street_address.value
       };
-      console.log('payload', payload);
-
-      console.log('this.accountInformation', this.accountInformation);
       if (this.userInfo?.id) {
-        this.apiService.userInfo(JSON.stringify(payload)).subscribe(res => {
-          this.userInfoData = res?.data;
-          console.log('res', res);
-          this.accountInformation = null;
-        },
-          (error: any) => {
-            // console.log('error', error);
-            // this.showSpinner = false;
-          });
+        this.apiService.userInfo(JSON.stringify(payload)).subscribe((res) => {
+          if (res?.status == true) {
+            this.userInfoData = res?.data;
+            this.accountInformation = null;
+          }
+        });
       }
     }
   }
@@ -185,14 +186,11 @@ export class VerificationDetailsComponent implements OnInit {
       }
       console.log('payload', payload);
       if (this.userInfo?.id) {
-        this.apiService.accountInfo(JSON.stringify(payload)).subscribe(res => {
-          console.log(res, res);
-          this.accInfoData = res?.data;
-        },
-          (error: any) => {
-            // console.log('error', error);
-            // this.showSpinner = false;
-          });
+        this.apiService.accountInfo(JSON.stringify(payload)).subscribe((res) => {
+          if (res?.status == true) {
+            this.accInfoData = res?.data;
+          }
+        });
       }
     } else {
       let payload = {
@@ -204,21 +202,17 @@ export class VerificationDetailsComponent implements OnInit {
         fixed_rate: this.fixedRateValue,
         balance: this.balanceValue
       }
-      console.log('payload', payload);
       if (this.userInfo?.id) {
-        this.apiService.accountInfo(JSON.stringify(payload)).subscribe(res => {
-          console.log(res, res);
-          this.accInfoData = res?.data;
-          this.isStep = false;
-          this.isStep1 = false;
-          this.isAccount1 = false;
-          this.isAccount = false;
-          this.isDeposit = true;
-        },
-          (error: any) => {
-            // console.log('error', error);
-            // this.showSpinner = false;
-          });
+        this.apiService.accountInfo(JSON.stringify(payload)).subscribe((res) => {
+          if (res?.status == true) {
+            this.accInfoData = res?.data;
+            this.isStep = false;
+            this.isStep1 = false;
+            this.isAccount1 = false;
+            this.isAccount = false;
+            this.isDeposit = true;
+          }
+        });
       }
     }
   }

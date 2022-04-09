@@ -42,7 +42,7 @@ export class ApiService {
     // addPlan() {
     //     return this.apiService.get(Endpoints.ApiEndpoint.Plans.addPlans);
     // }
-    getLeverage() {
+    getLeverage(): Observable<any> {
         return this.http.get(Endpoints.ApiEndpoint.Leverage.leverage);
     }
     // addLeverage() {
@@ -54,10 +54,16 @@ export class ApiService {
     getAccountList(id: any): Observable<any> {
         return this.http.get(Endpoints.ApiEndpoint.dashboard.accountDetails + id);
     }
-    addInterTransfer(payload): Observable<any> {
+    addInterTransfer(payload: any): Observable<any> {
         return this.http.post(Endpoints.ApiEndpoint.dashboard.internalTransfer, payload);
     }
-    depositHistory(payload): Observable<any> {
-        return this.http.post(Endpoints.ApiEndpoint.dashboard.dipositHistory, payload);
+    depositHistory(payload: any): Observable<any> {
+        return this.http.post(Endpoints.ApiEndpoint.dashboard.depositeHistory, payload);
+    }
+    withdrawHistory(payload: any): Observable<any> {
+        return this.http.post(Endpoints.ApiEndpoint.dashboard.withdrawHistory, payload);
+    }
+    transferHistory(payload: any): Observable<any> {
+        return this.http.post(Endpoints.ApiEndpoint.dashboard.transferHistory, payload);
     }
 }

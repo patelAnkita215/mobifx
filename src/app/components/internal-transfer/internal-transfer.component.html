@@ -36,17 +36,14 @@
                           From
                         </label>
                         <div class="form-element-item plus-button" slot="account-selector" ishasbutton="true">
-
                           <div class="form-element-multiselect">
                             <input name="billingAddress" type="hidden" value="46357357" />
                             <div tabindex="0" class="multiselect multiselect--above dropdown">
                               <div class="multiselect__select"></div>
                               <div class="multiselect-tags" id="dropdownMenuButton1" data-toggle="dropdown"
-                                aria-expanded="false">
+                                aria-expanded="false" data-text="Please select">
                                 <div class="multiselect__tags-wrap" style="display: none"></div>
-
                                 <div class="multiselect__spinner" style="display: none"></div>
-
                                 <!-- <span class="multiselect__single">
                                   <div class="account-selector-list-item">
                                     <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
@@ -56,12 +53,10 @@
                                     <span class="account-selector__number">{{item?.account_id}}</span>
                                   </div>
                                 </span> -->
-
                               </div>
                               <div class="multiselect-content-wrapper dropdown-menu"
-                                aria-labelledby="dropdownMenuButton1">
+                                aria-labelledby="dropdownMenuButton1" data-text="Please select">
                                 <!-- <div class="multiselect__content dropdown-menu" style="display: inline-block;"> -->
-
                                 <a *ngFor="let item of userAccount" class="multiselect__element dropdown-item">
                                   <span class="multiselect__single" (click)="accountByFrom(item?.id)">
                                     <div class="account-selector-list-item">
@@ -72,14 +67,10 @@
                                       <span class="account-selector__number">{{item?.account_id}}</span>
                                     </div>
                                   </span>
-
                                 </a>
                               </div>
                             </div>
-
-
                           </div>
-
                         </div>
                         <!-- <div class="form-element-multiselect">
                           <select
@@ -131,14 +122,12 @@
                         </div> -->
                       </div>
                     </div>
-
                     <div class="internal-transfer-row fl-grid-element">
                       <div class="form-element-item">
                         <label for="email" class="form-element-title">
                           To
                         </label>
                         <div class="form-element-item plus-button" slot="account-selector" ishasbutton="true">
-
                           <div class="form-element-multiselect">
                             <input name="billingAddress" type="hidden" value="46357357" />
                             <div tabindex="0" class="multiselect multiselect--above dropdown">
@@ -146,9 +135,7 @@
                               <div class="multiselect-tags" id="dropdownMenuButton2" data-toggle="dropdown"
                                 aria-expanded="false">
                                 <div class="multiselect__tags-wrap" style="display: none"></div>
-
                                 <div class="multiselect__spinner" style="display: none"></div>
-
                                 <!-- <span class="multiselect__single">
                                   <div class="account-selector-list-item">
                                     <div class="mt5-logo">{{item?.plan?.name.substr(item?.plan?.name.indexOf("
@@ -158,12 +145,10 @@
                                     <span class="account-selector__number">{{item?.account_id}}</span>
                                   </div>
                                 </span> -->
-
                               </div>
                               <div class="multiselect-content-wrapper dropdown-menu"
                                 aria-labelledby="dropdownMenuButton2">
                                 <!-- <div class="multiselect__content dropdown-menu" style="display: inline-block;"> -->
-
                                 <a *ngFor="let item of userAccount" class="multiselect__element dropdown-item">
                                   <span class="multiselect__single" (click)="accountByTo(item?.id)">
                                     <div class="account-selector-list-item">
@@ -174,13 +159,10 @@
                                       <span class="account-selector__number">{{item?.account_id}}</span>
                                     </div>
                                   </span>
-
                                 </a>
                               </div>
                             </div>
-
                           </div>
-
                         </div>
                         <!-- <div class="form-element-multiselect">
                           <select

@@ -46,7 +46,7 @@
           </ul>
         </div>
         <div>
-          <a class="header-container-user-name" href="/logout/"></a>
+          <a class="header-container-user-name" href="" (click)="logout()"></a>
         </div>
       </div>
     </div>
@@ -400,10 +400,9 @@
                   </h4>
                   <div class="leverage-select">
                     <mat-form-field appearance="outline">
-                      <mat-select [(value)]="Leverage" (selectionChange)="onSelectLeverage($event)">
-                        <mat-option value="1">1:500</mat-option>
-                        <!-- <mat-option value="2">1:200</mat-option>
-                        <mat-option value="3">1:200</mat-option> -->
+                      <mat-select *ngFor="let item of leverageData" [(value)]="Leverage"
+                        (selectionChange)="onSelectLeverage($event)">
+                        <mat-option value="{{item?.id}}">{{item?.name}}</mat-option>
                       </mat-select>
                     </mat-form-field>
                   </div>

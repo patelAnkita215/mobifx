@@ -1,11 +1,13 @@
 .deposit {
-    .content-wrapper {padding-top: 24px;}
+    .content-wrapper {
+        padding-top: 24px;
+    }
     .heading {
         box-sizing: border-box;
         padding: 0;
         margin: 0;
         margin-bottom: 24px;
-        font-family: Roboto,Helvetica,Arial,sans-serif;
+        font-family: Roboto, Helvetica, Arial, sans-serif;
         line-height: 1;
         color: #000;
         font-weight: 500;
@@ -62,7 +64,9 @@
             .filters-grid {
                 width: 100%;
                 margin-bottom: 0;
-                td {border: 0;}
+                td {
+                    border: 0;
+                }
                 label {
                     width: 100px;
                     min-height: 40px;
@@ -77,18 +81,18 @@
                     border-radius: 4px;
                     background: #fff;
 
-                    &::after {
-                        content: "";
-                        width: 24px;
-                        height: 24px;
-                        position: absolute;
-                        top: 50%;
-                        right: 8px;
-                        -webkit-transform: translateY(-50%);
-                        transform: translateY(-50%);
-                        z-index: 0;
-                        background-image: url('../../../assets/images/icon/down.svg');                    
-                    }
+                    // &::after {
+                    //     content: "";
+                    //     width: 24px;
+                    //     height: 24px;
+                    //     position: absolute;
+                    //     top: 50%;
+                    //     right: 8px;
+                    //     -webkit-transform: translateY(-50%);
+                    //     transform: translateY(-50%);
+                    //     z-index: 0;
+                    //     background-image: url('../../../assets/images/icon/down.svg');
+                    // }
                     .form-element-unit {
                         background: 0 0;
                         padding-left: 12px;
@@ -110,51 +114,50 @@
                         color: #050f2c;
                         font-size: 14px;
                         font-weight: 500;
-                        font-family: Roboto,Helvetica,Arial,sans-serif;
-                        letter-spacing: .08px;
-                        transition-property: border-color,box-shadow;
-                        transition-duration: .2s;
+                        font-family: Roboto, Helvetica, Arial, sans-serif;
+                        letter-spacing: 0.08px;
+                        transition-property: border-color, box-shadow;
+                        transition-duration: 0.2s;
                         &:read-only:not(._label) {
-                            border-color: #ccc!important;
-                            box-shadow: none!important;
+                            border-color: #ccc !important;
+                            box-shadow: none !important;
                         }
                     }
                 }
             }
         }
     }
-	.account-table {
-
+    .account-table {
         .table-detail {
-			.simple-table {
-				border: 0;
-				thead {
-					border: 0;
-					th {
-						font-weight: 700;
-						font-size: 13px;
-						border-bottom: #c99c3b solid 2px;
-						padding: 4px;
-						color: #c99c3b;
-						text-align: center;
-						border-top: 0;
-						white-space: nowrap;
-					}
-				}
-				tbody {
-					td {
-						font-size: 13px;
-						padding: 13px 4px 11px;
-						line-height: 16px;
-						color: #464646;
-						font-weight: 400;
-						text-align: left;
-						vertical-align: middle;
-						border-bottom: #e5e5e8 solid 1px;
-						white-space: nowrap;
+            .simple-table {
+                border: 0;
+                thead {
+                    border: 0;
+                    th {
+                        font-weight: 700;
+                        font-size: 13px;
+                        border-bottom: #c99c3b solid 2px;
+                        padding: 4px;
+                        color: #c99c3b;
+                        text-align: center;
+                        border-top: 0;
+                        white-space: nowrap;
                     }
-				}
-			}
-		}
-	}
+                }
+                tbody {
+                    td {
+                        font-size: 13px;
+                        padding: 13px 4px 11px;
+                        line-height: 16px;
+                        color: #464646;
+                        font-weight: 400;
+                        text-align: left;
+                        vertical-align: middle;
+                        border-bottom: #e5e5e8 solid 1px;
+                        white-space: nowrap;
+                    }
+                }
+            }
+        }
+    }
 }
